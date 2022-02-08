@@ -2,3 +2,4 @@
 
 #Team Member:
 Minh Bui - 300345000
+Pamela Lemus - 300344812
