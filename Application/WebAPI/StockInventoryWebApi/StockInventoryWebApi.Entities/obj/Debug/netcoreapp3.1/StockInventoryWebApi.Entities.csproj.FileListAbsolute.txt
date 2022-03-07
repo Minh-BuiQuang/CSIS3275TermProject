@@ -1,0 +1,12 @@
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\bin\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.deps.json
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\bin\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.runtimeconfig.json
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\bin\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.runtimeconfig.dev.json
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\bin\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.dll
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\bin\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.pdb
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\obj\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\obj\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.AssemblyInfoInputs.cache
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\obj\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.AssemblyInfo.cs
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\obj\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.csproj.CoreCompileInputs.cache
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\obj\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.dll
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\obj\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.pdb
+C:\Users\jaspa\source\repos\StockInventoryWebApi\StockInventoryWebApi.Entities\obj\Debug\netcoreapp3.1\StockInventoryWebApi.Entities.genruntimeconfig.cache
