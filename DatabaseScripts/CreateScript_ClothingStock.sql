@@ -21,8 +21,8 @@ Phone VARCHAR (50) NOT NULL
 
 CREATE TABLE Product (
 ProductID INT PRIMARY KEY, 
-ProductName VARCHAR (20) NOT NULL, 
-Description VARCHAR (20) NOT NULL,
+ProductName VARCHAR (100) NOT NULL, 
+Description VARCHAR (1000) NOT NULL,
 Size VARCHAR (20) CHECK (Size='XS' OR Size ='S' OR Size ='M' OR Size ='L' OR Size ='XL') NOT NULL,
 Category VARCHAR (20) CHECK (Category ='Pants' OR Category ='Shirts' OR Category ='Sweaters' OR Category ='Coats' OR Category ='Jackets' OR Category ='Others') NOT NULL,
 Quantity INT NOT NULL
