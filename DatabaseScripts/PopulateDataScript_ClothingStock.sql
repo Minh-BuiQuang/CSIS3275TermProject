@@ -24,3 +24,27 @@ set @sql_system_user = 'Bulk insert "System_User"
 		rowterminator = ''\n''
 	)'
 exec(@sql_system_user)
+
+--Insert Supplier data
+
+declare @sql_supplier varchar(1000)
+set @sql_supplier = 'Bulk insert "Supplier"
+	from ''' + @DataPath + 'Supplier.psv ' +  
+	'''with 
+	(
+		fieldterminator = ''|'',
+		rowterminator = ''\n''
+	)'
+exec(@sql_supplier)
+
+--Insert Customer data
+
+declare @sql_customer varchar(1000)
+set @sql_customer = 'Bulk insert "Customer"
+	from ''' + @DataPath + 'Customer.psv ' +  
+	'''with 
+	(
+		fieldterminator = ''|'',
+		rowterminator = ''\n''
+	)'
+exec(@sql_customer)
