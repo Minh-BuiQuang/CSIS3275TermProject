@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
+// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
+// If you have enabled NRTs for your project, then un-comment the following line:
+// #nullable disable
+
 namespace StockInventoryWebApi.Web.Models
 {
     public partial class Product
     {
         public Product()
         {
-            Customer = new HashSet<Customer>();
-            Supplier = new HashSet<Supplier>();
             UserStockInOutProduct = new HashSet<UserStockInOutProduct>();
         }
 
@@ -19,8 +21,6 @@ namespace StockInventoryWebApi.Web.Models
         public string Category { get; set; }
         public int Quantity { get; set; }
 
-        public virtual ICollection<Customer> Customer { get; set; }
-        public virtual ICollection<Supplier> Supplier { get; set; }
         public virtual ICollection<UserStockInOutProduct> UserStockInOutProduct { get; set; }
     }
 }
