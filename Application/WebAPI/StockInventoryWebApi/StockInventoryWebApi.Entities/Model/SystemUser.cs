@@ -9,6 +9,11 @@ namespace StockInventoryWebApi.Web.Models
 {
     public partial class SystemUser
     {
+        public SystemUser()
+        {
+            UserStockInOutProduct = new HashSet<UserStockInOutProduct>();
+        }
+
         public int EmployeeId { get; set; }
         public string Fname { get; set; }
         public string Lname { get; set; }
@@ -17,6 +22,6 @@ namespace StockInventoryWebApi.Web.Models
         public int Pin { get; set; }
         public string Phone { get; set; }
 
-        public virtual UserStockInOutProduct UserStockInOutProduct { get; set; }
+        public virtual ICollection<UserStockInOutProduct> UserStockInOutProduct { get; set; }
     }
 }

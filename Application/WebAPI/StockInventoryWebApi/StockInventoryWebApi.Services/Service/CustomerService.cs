@@ -77,7 +77,7 @@ namespace StockInventoryWebApi.Services.Service
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 isSuccess = false;
             }

@@ -29,8 +29,8 @@ namespace StockInventoryWebApi.Web.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=ClothingStock_DB;Trusted_Connection=True;");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=ClothingStock_DB;Trusted_Connection=True;");
             }
         }
 
@@ -39,7 +39,7 @@ namespace StockInventoryWebApi.Web.Models
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__Customer__A9D105344372DA5F")
+                    .HasName("UQ__Customer__A9D1053477BE4E7A")
                     .IsUnique();
 
                 entity.Property(e => e.CustomerId)
@@ -97,7 +97,7 @@ namespace StockInventoryWebApi.Web.Models
             modelBuilder.Entity<Supplier>(entity =>
             {
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__Supplier__A9D10534D6425541")
+                    .HasName("UQ__Supplier__A9D10534B0ACEE7A")
                     .IsUnique();
 
                 entity.Property(e => e.SupplierId)
@@ -123,16 +123,16 @@ namespace StockInventoryWebApi.Web.Models
             modelBuilder.Entity<SystemUser>(entity =>
             {
                 entity.HasKey(e => e.EmployeeId)
-                    .HasName("PK__System_U__7AD04FF17387EF59");
+                    .HasName("PK__System_U__7AD04FF1F5C090A6");
 
                 entity.ToTable("System_User");
 
                 entity.HasIndex(e => e.Email)
-                    .HasName("UQ__System_U__A9D10534373B98AD")
+                    .HasName("UQ__System_U__A9D105348FEED00B")
                     .IsUnique();
 
                 entity.HasIndex(e => e.Pin)
-                    .HasName("UQ__System_U__C577552B6FB4F8B1")
+                    .HasName("UQ__System_U__C577552B72831566")
                     .IsUnique();
 
                 entity.Property(e => e.EmployeeId)
@@ -169,18 +169,10 @@ namespace StockInventoryWebApi.Web.Models
 
             modelBuilder.Entity<UserStockInOutProduct>(entity =>
             {
-                entity.HasKey(e => e.EmployeeId)
-                    .HasName("PK__User_Sto__7AD04FF1DFAEF224");
+                entity.HasKey(e => e.TransactionNumber)
+                    .HasName("PK__User_Sto__E733A2BEA9E00665");
 
                 entity.ToTable("User_StockIN_OUT_Product");
-
-                entity.HasIndex(e => e.TransactionNumber)
-                    .HasName("UQ__User_Sto__E733A2BFE5D02600")
-                    .IsUnique();
-
-                entity.Property(e => e.EmployeeId)
-                    .HasColumnName("EmployeeID")
-                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Comments)
                     .HasMaxLength(50)
@@ -189,6 +181,8 @@ namespace StockInventoryWebApi.Web.Models
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
                 entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
 
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
@@ -206,14 +200,13 @@ namespace StockInventoryWebApi.Web.Models
                     .HasConstraintName("Stock_Customer");
 
                 entity.HasOne(d => d.Employee)
-                    .WithOne(p => p.UserStockInOutProduct)
-                    .HasForeignKey<UserStockInOutProduct>(d => d.EmployeeId)
+                    .WithMany(p => p.UserStockInOutProduct)
+                    .HasForeignKey(d => d.EmployeeId)
                     .HasConstraintName("Stock_Employee");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.UserStockInOutProduct)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("Stock_Product");
 
                 entity.HasOne(d => d.Supplier)
