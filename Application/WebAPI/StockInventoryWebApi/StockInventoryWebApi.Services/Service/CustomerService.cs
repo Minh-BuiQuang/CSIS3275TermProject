@@ -44,7 +44,6 @@ namespace StockInventoryWebApi.Services.Service
                         Email = customer.Email,
                         Location = customer.Location,
                         Phone = customer.Phone,
-                        ProductId = customer.ProductId
                     };
 
                     _unitOfWork.Repository<Customer>().Insert(cust);
@@ -96,7 +95,6 @@ namespace StockInventoryWebApi.Services.Service
                                               Email = x.Email,
                                               Location = x.Location,
                                               Phone = x.Phone,
-                                              ProductId = x.ProductId
                                           }).ToList();
 
             return customerDto;
@@ -115,7 +113,6 @@ namespace StockInventoryWebApi.Services.Service
                                               Email = x.Email,
                                               Location = x.Location,
                                               Phone = x.Phone,
-                                              ProductId = x.ProductId
                                           }).FirstOrDefault();
             }
 

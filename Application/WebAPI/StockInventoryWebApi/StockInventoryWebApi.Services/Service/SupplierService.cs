@@ -43,7 +43,6 @@ namespace StockInventoryWebApi.Services.Service
                         SupplierName = supplier.SupplierName,
                         Email = supplier.Email,
                         Phone = supplier.Phone,
-                        ProductId = supplier.ProductId
                     };
 
                     _unitOfWork.Repository<Supplier>().Insert(sup);
@@ -94,7 +93,6 @@ namespace StockInventoryWebApi.Services.Service
                                               SupplierName = x.SupplierName,
                                               Email = x.Email,
                                               Phone = x.Phone,
-                                              ProductId = x.ProductId
                                           }).ToList();
 
             return supDto;
@@ -112,7 +110,6 @@ namespace StockInventoryWebApi.Services.Service
                                               SupplierName = x.SupplierName,
                                               Email = x.Email,
                                               Phone = x.Phone,
-                                              ProductId = x.ProductId
                                           }).FirstOrDefault();
             }
 
@@ -134,8 +131,6 @@ namespace StockInventoryWebApi.Services.Service
                             sup.Email = supplier.Email ?? sup.Email;
                         if (supplier.SupplierId != sup.SupplierId)
                             sup.SupplierId = supplier.SupplierId;
-                        if (supplier.ProductId != sup.ProductId)
-                            sup.ProductId = supplier.ProductId;
                         if (supplier.SupplierName != sup.SupplierName)
                             sup.SupplierName = supplier.SupplierName ?? sup.SupplierName;
                         if (supplier.Phone != sup.Phone)

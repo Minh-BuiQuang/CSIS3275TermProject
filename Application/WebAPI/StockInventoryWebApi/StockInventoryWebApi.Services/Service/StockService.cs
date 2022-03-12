@@ -45,7 +45,9 @@ namespace StockInventoryWebApi.Services.Service
                         Quantity = userStock.Quantity,
                         ProductId = userStock.ProductId,
                         TransactionNumber = userStock.TransactionNumber,
-                        Type = userStock.Type
+                        Type = userStock.Type,
+                        CustomerId = userStock.CustomerId,
+                        SupplierId = userStock.SupplierId
                     };
 
                     _unitOfWork.Repository<UserStockInOutProduct>().Insert(userStockInOutProduct);
@@ -100,7 +102,9 @@ namespace StockInventoryWebApi.Services.Service
                                   Quantity = x.Quantity,
                                   ProductId = x.ProductId,
                                   TransactionNumber = x.TransactionNumber,
-                                  Type = x.Type
+                                  Type = x.Type,
+                                  SupplierId = x.SupplierId,
+                                  CustomerId =x.CustomerId
                               }).ToList();
 
             return UserStockInOutProduct;
@@ -121,7 +125,9 @@ namespace StockInventoryWebApi.Services.Service
                              Quantity = x.Quantity,
                              ProductId = x.ProductId,
                              TransactionNumber = x.TransactionNumber,
-                             Type = x.Type
+                             Type = x.Type,
+                             CustomerId = x.CustomerId,
+                             SupplierId =x.SupplierId
                          }).FirstOrDefault();
             }
 
