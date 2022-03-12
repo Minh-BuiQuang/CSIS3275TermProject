@@ -44,11 +44,11 @@ Phone VARCHAR (50) NOT NULL
 );
 
 CREATE TABLE User_StockIN_OUT_Product (
-EmployeeID INT PRIMARY KEY,
-ProductID INT ,
+TransactionNumber INT PRIMARY KEY IDENTITY(1,1),
+ProductID INT NOT NULL,
 Quantity INT NOT NULL,
 Date DATETIME NOT NULL,
-TransactionNumber INT UNIQUE NOT NULL,
+EmployeeID INT NOT NULL,
 Comments VARCHAR (50),
 Type VARCHAR (20) CHECK (Type ='IN' OR Type ='OUT' OR Type ='ADJUST') NOT NULL,
 SupplierID INT,
