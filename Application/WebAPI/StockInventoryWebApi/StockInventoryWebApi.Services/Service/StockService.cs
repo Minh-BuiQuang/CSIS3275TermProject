@@ -44,13 +44,15 @@ namespace StockInventoryWebApi.Services.Service
                         EmployeeId = userStock.EmployeeId,
                         Quantity = userStock.Quantity,
                         ProductId = userStock.ProductId,
-                        TransactionNumber = userStock.TransactionNumber,
                         Type = userStock.Type,
                         CustomerId = userStock.CustomerId,
                         SupplierId = userStock.SupplierId
                     };
 
                     _unitOfWork.Repository<UserStockInOutProduct>().Insert(userStockInOutProduct);
+                    var product = _unitOfWork.Repository<Product>().GetById(userStockInOutProduct.ProductId);
+                    product.Quantity += userStockInOutProduct.Quantity;
+                    _unitOfWork.Repository<Product>().Update(product);
                     _unitOfWork.SaveChanges();
                     isSuccess = true;
                 }
