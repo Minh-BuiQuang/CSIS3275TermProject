@@ -14,20 +14,16 @@ function EntityList() {
                         <tr>
                             <th scope='col'>Supplier ID</th>
                             <th scope='col'>Supplier</th>
-                            <th scope='col'>Product ID</th>
                             <th scope='col'>Email</th>
                             <th scope='col'>Phone</th>
-                            <th scope='col'>Address</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {suppliers.map(d=>(<tr key={d.transactionId}>
-                            <td>{d.transactionId}</td>
-                            <td>{d.productId}</td>
-                            <td>{d.employee}</td>
-                            <td>{d.type}</td>
-                            <td>{d.entity}</td>
-                            <td>{d.time}</td>
+                        {suppliers.data.map(d=>(<tr key={d.supplierId}>
+                            <td>{d.supplierId}</td>
+                            <td>{d.supplierName}</td>
+                            <td>{d.email}</td>
+                            <td>{d.phone}</td>
                         </tr>))}
                     </tbody>
                 </table>
@@ -39,20 +35,18 @@ function EntityList() {
                         <tr>
                             <th scope='col'>Customer ID</th>
                             <th scope='col'>Customer Name</th>
-                            <th scope='col'>Product ID</th>
                             <th scope='col'>Email</th>
-                            <th scope='col'>Phone</th>
                             <th scope='col'>Address</th>
+                            <th scope='col'>Phone</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {customers.map(d=>(<tr key={d.transactionId}>
-                            <td>{d.transactionId}</td>
-                            <td>{d.productId}</td>
-                            <td>{d.employee}</td>
-                            <td>{d.type}</td>
-                            <td>{d.entity}</td>
-                            <td>{d.time}</td>
+                        {customers.data.map(d=>(<tr key={d.customerId}>
+                            <td>{d.customerId}</td>
+                            <td>{d.customerName}</td>
+                            <td>{d.email}</td>
+                            <td>{d.location}</td>
+                            <td>{d.phone}</td>
                         </tr>))}
                     </tbody>
                 </table>

@@ -63,13 +63,13 @@ export const InventoryProvider = ({children}) => {
     }
 
     const fetchSuppliers = async () => {
-        const response = await fetch('/suppliers');
+        const response = await fetch('https://localhost:44348/api/Supplier');
         const data = await response.json();
         setSuppliers(data);
     }
 
     const fetchCustomers = async () => {
-        const response = await fetch('/customers');
+        const response = await fetch('https://localhost:44348/api/Customer');
         const data = await response.json();
         setCustomers(data);
     }
