@@ -25,7 +25,7 @@ export const InventoryProvider = ({children}) => {
     }, [])
 
     const fetchStockRecords = async () => {
-        const response = await fetch('/stock-records');
+        const response = await fetch('https://localhost:44348/api/Stock');
         const data = await response.json();
         setStockRecords(data);
     }
@@ -75,7 +75,7 @@ export const InventoryProvider = ({children}) => {
     }
 
     const fetchCurrentStocks = async () => {
-        const response = await fetch('/stocks');
+        const response = await fetch('https://localhost:44348/api/Product');
         const data = await response.json();
         setCurrentStocks(data);
     }
