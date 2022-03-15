@@ -26,7 +26,7 @@ function CurrentStock() {
                 </tr>
             </thead>
             <tbody>
-                {currentStocks.data.map(d=>(<tr key={d.productId}>
+                {currentStocks.map(d=>(<tr key={d.productId}>
                     <td>{d.productId}</td>
                     <td>{d.productName}</td>
                     <td>{d.category}</td>
