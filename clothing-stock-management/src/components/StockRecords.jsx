@@ -4,7 +4,7 @@ import InventoryContext from '../Context/InventoryContext';
 function StockRecords() {
     const {stockRecords} = useContext(InventoryContext);
     console.log(stockRecords);
-    if(stockRecords == "")     
+    if(stockRecords.data == null)     
         return ""
     else
         return (
@@ -17,6 +17,7 @@ function StockRecords() {
                         <th scope='col'>Type</th>
                         <th scope='col'>Entity</th>
                         <th scope='col'>Time</th>
+                        <th scope='col'>Date</th>
                         <th scope='col'>Quantity</th>
                     </tr>
                 </thead>
