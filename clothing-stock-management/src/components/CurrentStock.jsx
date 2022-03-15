@@ -1,10 +1,18 @@
-import { useContext } from "react";
-import InventoryContext from "../Context/InventoryContext";
+import {useEffect, useState } from "react";
 
 function CurrentStock() {
 
-    const {currentStocks} = useContext(InventoryContext);
-    console.log(currentStocks);
+    const [currentStocks, setCurrentStocks] = useState([]);
+
+    useEffect(()=>{
+        const fetchCurrentStocks = async () => {
+            const response = await fetch('https://localhost:44348/api/Product');
+            const data = await response.json();
+            setCurrentStocks(data.data);
+        }
+        fetchCurrentStocks();
+    }, [])
+
     return (
         <table className="table table-striped">
             <thead>
@@ -32,3 +40,12 @@ function CurrentStock() {
 }
 
 export default CurrentStock;
+
+/*
+category: "Others"
+description: "One of Prada's most functional designs, this belt bag is made from weather-resistant shell fabric with zip compartments for storing your daily belongings. It's designed for navigating your day hands-free- try styling yours diagonally across the body."
+productId: 1
+productName: "Prada Striped Shell Belt Bag"
+quantity: 16
+size: "XS"
+*/

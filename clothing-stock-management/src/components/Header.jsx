@@ -24,7 +24,7 @@ function Header() {
                     <h5 className="nav-item nav-link p-3"><NavLink to='/current-stock' className={`text-decoration-none ${pathMatchRoute('/current-stock') ? 'text-success' : 'text-dark'}`}>Current Stock</NavLink></h5>
                     <h5 className="nav-item nav-link p-3"><NavLink to='/entity-list' className={`text-decoration-none ${pathMatchRoute('/entity-list') ? 'text-success' : 'text-dark'}`}>Entity List</NavLink></h5>
                 </div>
-                <form className="">
+                <form>
                     <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
                 </form>
             </nav>

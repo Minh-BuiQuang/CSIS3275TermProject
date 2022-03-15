@@ -4,8 +4,7 @@ const InventoryContext = createContext();
 
 export const InventoryProvider = ({children}) => {
     const [stockRecords, setStockRecords] = useState([]);
-    const [currentStocks, setCurrentStocks] = useState([]);
-    const [suppliers, setSuppliers] = useState([]);
+    // const [currentStocks, setCurrentStocks] = useState([]);
     const [customers, setCustomers] = useState([]);
 
     useEffect(()=>{
@@ -13,19 +12,11 @@ export const InventoryProvider = ({children}) => {
     }, []);
 
     useEffect(()=>{
-        fetchCurrentStocks();
-    }, [])
-
-    useEffect(()=>{
-        fetchSuppliers();
-    }, [])
-
-    useEffect(()=>{
         fetchCustomers();
     }, [])
 
     const fetchStockRecords = async () => {
-        const response = await fetch('/stock-records');
+        const response = await fetch('https://localhost:44348/Product');
         const data = await response.json();
         setStockRecords(data);
     }
@@ -65,24 +56,20 @@ export const InventoryProvider = ({children}) => {
     const fetchSuppliers = async () => {
         const response = await fetch('https://localhost:44348/api/Supplier');
         const data = await response.json();
-        setSuppliers(data);
+        return data.data;
     }
 
     const fetchCustomers = async () => {
         const response = await fetch('https://localhost:44348/api/Customer');
         const data = await response.json();
-        setCustomers(data);
-    }
-
-    const fetchCurrentStocks = async () => {
-        const response = await fetch('/stocks');
-        const data = await response.json();
-        setCurrentStocks(data);
+        // console.log(data);
+        setCustomers(data.data);
     }
 
     return (
-        <InventoryContext.Provider value={{stockRecords, currentStocks, suppliers, customers, addStockRecord, fetchProductDetails, stockOutProduct}}>{children}</InventoryContext.Provider>
+        <InventoryContext.Provider value={{stockRecords, customers, addStockRecord, fetchProductDetails, stockOutProduct, fetchSuppliers}}>{children}</InventoryContext.Provider>
     )
 }
 
 export default InventoryContext;
+
