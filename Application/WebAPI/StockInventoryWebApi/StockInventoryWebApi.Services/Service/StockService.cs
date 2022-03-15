@@ -37,6 +37,31 @@ namespace StockInventoryWebApi.Services.Service
             {
                 if (userStock != null)
                 {
+                    //Validate add stock request
+                    switch (userStock.Type)
+                    {
+                        //Stock In: SupplierId must exists in database. CustomerId must be null. Quantity > 0
+                        case "IN":
+                            var supplier = _unitOfWork.Repository<Supplier>().GetById(userStock.SupplierId);
+                            if (supplier == null || userStock.CustomerId != null || userStock.Quantity <= 0)
+                                return false;
+                            break;
+                        //Stock Out: SupplierId must be null. CustomerId must exists in database. Quantity < 0
+                        case "OUT":
+                            var customer = _unitOfWork.Repository<Customer>().GetById(userStock.CustomerId);
+                            if (customer != null || userStock.SupplierId == null || userStock.Quantity >= 0)
+                                return false;
+                            break;
+                        //Adjustment: Both SupplierId and CustomerId must be null. Quantity != 0
+                        case "ADJUSTMENT":
+                            if (userStock.CustomerId != null || userStock.SupplierId != null || userStock.Quantity == 0)
+                                return false;
+                            break;
+                        //Refuse add stock if type is incorrect
+                        default:
+                            return false;
+                    }
+
                     UserStockInOutProduct userStockInOutProduct = new UserStockInOutProduct
                     {
                         Comments = userStock.Comments,
