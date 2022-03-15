@@ -16,7 +16,11 @@ export const InventoryProvider = ({children}) => {
     }, [])
 
     const fetchStockRecords = async () => {
+<<<<<<< HEAD
         const response = await fetch('https://localhost:44348/Product');
+=======
+        const response = await fetch('https://localhost:44348/api/Stock');
+>>>>>>> b00595c91c19da7c6bddcbaca880bfd464af8a76
         const data = await response.json();
         setStockRecords(data);
     }
@@ -62,8 +66,18 @@ export const InventoryProvider = ({children}) => {
     const fetchCustomers = async () => {
         const response = await fetch('https://localhost:44348/api/Customer');
         const data = await response.json();
+<<<<<<< HEAD
         // console.log(data);
         setCustomers(data.data);
+=======
+        setCustomers(data);
+    }
+
+    const fetchCurrentStocks = async () => {
+        const response = await fetch('https://localhost:44348/api/Product');
+        const data = await response.json();
+        setCurrentStocks(data);
+>>>>>>> b00595c91c19da7c6bddcbaca880bfd464af8a76
     }
 
     return (
