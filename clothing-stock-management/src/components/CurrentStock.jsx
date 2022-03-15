@@ -12,7 +12,6 @@ function CurrentStock() {
                     <th scope='col'>Product Name</th>
                     <th scope='col'>Product ID</th>
                     <th scope='col'>Category</th>
-                    <th scope='col'>Supplier</th>
                     <th scope='col'>Quantity</th>
                     <th scope='col'>Size</th>
                     <th scope='col'>Description</th>
@@ -23,7 +22,6 @@ function CurrentStock() {
                     <td>{d.productId}</td>
                     <td>{d.productName}</td>
                     <td>{d.category}</td>
-                    <td>{d.supplier}</td>
                     <td>{d.quantity}</td>
                     <td>{d.size}</td>
                     <td>{d.description}</td>
