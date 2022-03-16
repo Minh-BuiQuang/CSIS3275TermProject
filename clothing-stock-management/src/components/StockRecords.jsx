@@ -12,7 +12,7 @@ function StockRecords() {
                 <thead>
                     <tr>
                         <th scope='col'>Transaction ID</th>
-                        <th scope='col'>Product ID</th>
+                        <th scope='col'>Product</th>
                         <th scope='col'>Employee</th>
                         <th scope='col'>Type</th>
                         <th scope='col'>Entity</th>
@@ -24,12 +24,13 @@ function StockRecords() {
                 <tbody>
                     {stockRecords.data.map(d=>(<tr key={d.transactionNumber}>
                         <td>{d.transactionNumber}</td>
-                        <td>{d.productId}</td>
-                        <td>{d.employeeId}</td>
+                        <td>{d.productName}</td>
+                        <td>{d.employeeName}</td>
                         <td>{d.type}</td>
-                        <td>{d.supplierId}</td>
-                        <td>{d.date}</td>
-                        <td>{d.quantity}</td>
+                        <td>{d.supplierName == null ? (d.customerName == null ? "-" : d.customerName) : d.supplierName}</td>
+                        <td>{new Date(d.date).toTimeString().substring(0,8)}</td>
+                        <td>{new Date(d.date).toDateString().substring(4)}</td>
+                        <td style={{textAlign: 'right', paddingRight:'40px'}}>{d.quantity}</td>
                     </tr>))}
                 </tbody>
             </table>

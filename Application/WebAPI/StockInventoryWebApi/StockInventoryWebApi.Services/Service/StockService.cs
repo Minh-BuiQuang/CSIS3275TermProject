@@ -53,7 +53,7 @@ namespace StockInventoryWebApi.Services.Service
                                 return false;
                             break;
                         //Adjustment: Both SupplierId and CustomerId must be null. Quantity != 0
-                        case "ADJUSTMENT":
+                        case "ADJUST":
                             if (userStock.CustomerId != null || userStock.SupplierId != null || userStock.Quantity == 0)
                                 return false;
                             break;
@@ -125,9 +125,9 @@ namespace StockInventoryWebApi.Services.Service
                               {
                                   Comments = x.Comments,
                                   Date = x.Date,
-                                  EmployeeId = x.EmployeeId,
+                                  EmployeeName = x.Employee.Fname,
                                   Quantity = x.Quantity,
-                                  ProductId = x.ProductId,
+                                  ProductName = x.Product.ProductName,
                                   TransactionNumber = x.TransactionNumber,
                                   Type = x.Type,
                                   SupplierName = x.Supplier.SupplierName,
