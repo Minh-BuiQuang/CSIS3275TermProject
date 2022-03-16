@@ -49,7 +49,7 @@ namespace StockInventoryWebApi.Services.Service
                         //Stock Out: SupplierId must be null. CustomerId must exists in database. Quantity < 0
                         case "OUT":
                             var customer = _unitOfWork.Repository<Customer>().GetById(userStock.CustomerId);
-                            if (customer != null || userStock.SupplierId == null || userStock.Quantity >= 0)
+                            if (customer == null || userStock.SupplierId != null || userStock.Quantity >= 0)
                                 return false;
                             break;
                         //Adjustment: Both SupplierId and CustomerId must be null. Quantity != 0
