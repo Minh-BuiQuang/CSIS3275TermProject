@@ -19,6 +19,7 @@ function StockRecords() {
                         <th scope='col'>Time</th>
                         <th scope='col'>Date</th>
                         <th scope='col'>Quantity</th>
+                        <th scope='col'>Comments</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,6 +32,7 @@ function StockRecords() {
                         <td>{new Date(d.date).toTimeString().substring(0,8)}</td>
                         <td>{new Date(d.date).toDateString().substring(4)}</td>
                         <td style={{textAlign: 'right', paddingRight:'40px'}}>{d.quantity}</td>
+                        <td>{d.comments}</td>
                     </tr>))}
                 </tbody>
             </table>
