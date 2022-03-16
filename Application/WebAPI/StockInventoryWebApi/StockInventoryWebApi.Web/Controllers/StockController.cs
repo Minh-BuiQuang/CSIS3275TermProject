@@ -40,10 +40,10 @@ namespace StockInventoryWebApi.Web.Controllers
         [ProducesResponseType(typeof(ResponseMessage), 400)]
         [ProducesResponseType(typeof(ResponseMessage), 401)]
         [ProducesResponseType(typeof(ResponseMessage), 404)]
-        public ActionResult<UserStockInOutProductDto> GetAllStockDetails()
+        public ActionResult<dynamic> GetAllStockDetails()
         {
             ActionResult response;
-            List<UserStockInOutProductDto> stockDetail = _stockService.GetAllStocks();
+            List<dynamic> stockDetail = _stockService.GetAllStocks();
             if (stockDetail == null || !stockDetail.Any())
             {
                 response = NotFound(new ResponseMessage(false, null, new Message(HttpStatusCode.NotFound, $"There is no record in database.")));

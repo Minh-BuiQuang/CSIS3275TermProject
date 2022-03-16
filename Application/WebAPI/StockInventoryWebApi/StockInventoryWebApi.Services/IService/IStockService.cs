@@ -7,7 +7,7 @@ namespace StockInventoryWebApi.Services.IService
 {
     public interface IStockService
     {
-        List<UserStockInOutProductDto> GetAllStocks();
+        List<dynamic> GetAllStocks();
         UserStockInOutProductDto GetStockById(int empId, int prodId, int transNum);
         bool AddStockRecord(UserStockInOutProductDto userStock);
         bool UpdateStockRecord(UserStockInOutProductDto userStock);

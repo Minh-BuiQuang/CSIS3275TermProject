@@ -118,10 +118,10 @@ namespace StockInventoryWebApi.Services.Service
             return isSuccess;
         }
 
-        public List<UserStockInOutProductDto> GetAllStocks()
+        public List<dynamic> GetAllStocks()
         {
-            List<UserStockInOutProductDto> UserStockInOutProduct = _unitOfWork.Context.UserStockInOutProduct
-                              .Select(x => new UserStockInOutProductDto
+            List<dynamic> UserStockInOutProduct = _unitOfWork.Context.UserStockInOutProduct
+                              .Select(x => new
                               {
                                   Comments = x.Comments,
                                   Date = x.Date,
@@ -130,9 +130,9 @@ namespace StockInventoryWebApi.Services.Service
                                   ProductId = x.ProductId,
                                   TransactionNumber = x.TransactionNumber,
                                   Type = x.Type,
-                                  SupplierId = x.SupplierId,
-                                  CustomerId =x.CustomerId
-                              }).ToList();
+                                  SupplierName = x.Supplier.SupplierName,
+                                  CustomerName = x.Customer.CustomerName,
+                              }).ToList<dynamic>();
 
             return UserStockInOutProduct;
         }
