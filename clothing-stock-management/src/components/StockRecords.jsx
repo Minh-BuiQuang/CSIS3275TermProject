@@ -4,7 +4,7 @@ import InventoryContext from '../Context/InventoryContext';
 function StockRecords() {
     const {transactions} = useContext(InventoryContext);
 
-    if(transactions.data == null)     
+    if(transactions == null)     
         return ""
     else
         return (
@@ -23,7 +23,7 @@ function StockRecords() {
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions.data.map(d=>(<tr key={d.transactionNumber}>
+                    {transactions.map(d=>(<tr key={d.transactionNumber}>
                         <td>{d.transactionNumber}</td>
                         <td>{d.productName}</td>
                         <td>{d.employeeName}</td>
