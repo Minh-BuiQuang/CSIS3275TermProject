@@ -3,7 +3,7 @@ import InventoryContext from '../Context/InventoryContext';
 
 function StockIn() {
 
-    const {addStockRecord, fetchProductDetails} = useContext(InventoryContext);
+    const {addTransactionRecord, products, fetchProductDetails} = useContext(InventoryContext);
 
     const [productId, setProductId] = useState("");
     const [productName, setProductName] = useState("");
@@ -16,16 +16,14 @@ function StockIn() {
 
     const handleProductIdChange = async (e) => {
         setProductId(e.target.value);
-        if(e.target.value.length!==4) {
-            return;
-        }
-        const productDetails = await fetchProductDetails(e.target.value);
-        if(productDetails && productDetails.length > 0) {
-            setProductName(productDetails[0].productName);
-            setCategory([...new Set(productDetails.map(i=>i.category))]);
-            setSupplier([...new Set(productDetails.map(i=>i.supplier))]);
+        const productDetails = fetchProductDetails(e.target.value);
+        console.log(productDetails);
+        if(productDetails) {
+            setProductName(productDetails.productName);
+            // setCategory([...new Set(productDetails.map(i=>i.category))]);
+            // setSupplier([...new Set(productDetails.map(i=>i.supplier))]);
             setQuantity(0);
-            setDescription(productDetails[0].description);
+            setDescription(productDetails.description);
         }
     } 
 
@@ -52,13 +50,13 @@ function StockIn() {
     // add new stock to record
     const handleAddToStocks = (e) => {
         e.preventDefault();
-        if(!productId ||
-           !category.includes(selectedCategory) ||
-           !supplier.includes(selectedSupplier) || 
-           quantity<=0) {
-               window.alert("Please give required fields");
-            return;
-        }
+        // if(!productId ||
+        //    !category.includes(selectedCategory) ||
+        //    !supplier.includes(selectedSupplier) || 
+        //    quantity<=0) {
+        //        window.alert("Please give required fields");
+        //     return;
+        // }
         const newStock = {
             "productName": productName,
             "productId": productId,
@@ -67,7 +65,18 @@ function StockIn() {
             "quantity": quantity,
             "description": description
         }
-        addStockRecord(newStock);
+        const a = {
+            "employeeId": 0,
+            "productId": 100,
+            "quantity": 100,
+            "date": "2022-03-16T07:07:40.512Z",
+            "comments": "string",
+            "type": "Stock out",
+            "supplierId": 3,
+            "customerId": 1
+          }
+        console.log(a);
+        addTransactionRecord(a);
 
         // clear the fields
         setProductId("");

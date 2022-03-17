@@ -10,6 +10,8 @@ import StockOut from "./components/StockOut";
 import EntityList from "./components/EntityList";
 import CurrentStock from "./components/CurrentStock";
 import Login from "./components/Login";
+import Customers from "./components/Customers";
+import Suppliers from "./components/Suppliers";
 
 function App() {
   return (
@@ -22,7 +24,8 @@ function App() {
               <Route exact path="/" element={<StockRecords />} />
               <Route exact path="/stock-in" element={<StockIn />} />
               <Route exact path="/stock-out" element={<StockOut />} />
-              <Route exact path="/entity-list" element={<EntityList />} />
+              <Route exact path="/suppliers" element={<Suppliers />} />
+              <Route exact path="/customers" element={<Customers />} />
               <Route exact path="/current-stock" element={<CurrentStock />} />
             </Routes>
           </div>
