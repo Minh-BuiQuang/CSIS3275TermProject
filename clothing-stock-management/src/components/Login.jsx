@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-function Login({setAuthenticated}) {
+function Login() {
     const [employeeId, setEmployeeId] = useState("");
     const [pin, setPin] = useState("");
     const navigate = useNavigate();
