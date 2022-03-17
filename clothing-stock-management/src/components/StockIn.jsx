@@ -1,4 +1,4 @@
-import {useContext, useState} from 'react';
+import {useContext, useEffect, useState, useRef} from 'react';
 import InventoryContext from '../Context/InventoryContext';
 
 function StockIn() {
@@ -8,33 +8,47 @@ function StockIn() {
     const [productId, setProductId] = useState("");
     const [productName, setProductName] = useState("");
     const [category, setCategory] = useState([]);
-    const [supplier, setSupplier] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState([]);
+    const [supplier, setSuppliers] = useState([]);
     const [selectedSupplier, setSelectedSupplier] = useState([]);
     const [quantity, setQuantity] = useState(0);
     const [description, setDescription] = useState("");
+    const [comments, setComments] = useState("");
+
+    const clearFields = () => {
+        
+        // clear the fields
+        setProductId("");
+        setProductName("");
+        setCategory("");
+        setQuantity("");
+        setDescription("");
+        setSelectedSupplier("");
+        setComments("");
+    }
+    useEffect(()=>{
+        const fetchSuppliers = async () => {
+            const response = await fetch('https://localhost:44348/api/Supplier');
+            const data = await response.json();
+            setSuppliers(data.data);
+        };
+        fetchSuppliers();
+    }, [])
 
     const handleProductIdChange = async (e) => {
         setProductId(e.target.value);
-        if(e.target.value.length!==4) {
+        if(e.target.value.length<1) {
+            clearFields();
             return;
         }
-        const productDetails = await fetchProductDetails(e.target.value);
-        if(productDetails && productDetails.length > 0) {
-            setProductName(productDetails[0].productName);
-            setCategory([...new Set(productDetails.map(i=>i.category))]);
-            setSupplier([...new Set(productDetails.map(i=>i.supplier))]);
+        const response = await fetchProductDetails(e.target.value);
+        if(response.success)
+        {
+            const productDetails = response.data;
+            setProductName(productDetails.productName);
+            setCategory(productDetails.category);
             setQuantity(0);
-            setDescription(productDetails[0].description);
+            setDescription(productDetails.description);
         }
-    } 
-
-    const handleProductNameChange = (e) => {
-        setProductName(e.target.value);
-    }
-
-    const handleCategoryChange = (e) => {
-        setSelectedCategory(e.target.value);
     }
 
     const handleSupplierChange = (e) => {
@@ -44,62 +58,48 @@ function StockIn() {
     const handleQuantityChange = (e) => {
         setQuantity(e.target.value);
     }
-
-    const handleDescriptionChange = (e) => {
-        setDescription(e.target.value);
+    
+    const handleCommentsChange = (e) => {
+        setComments(e.target.value);
     }
 
     // add new stock to record
     const handleAddToStocks = (e) => {
         e.preventDefault();
         if(!productId ||
-           !category.includes(selectedCategory) ||
-           !supplier.includes(selectedSupplier) || 
            quantity<=0) {
                window.alert("Please give required fields");
             return;
         }
         const newStock = {
-            "productName": productName,
-            "productId": productId,
-            "category": selectedCategory, 
-            "supplier": selectedSupplier,  
-            "quantity": quantity,
-            "description": description
+            "employeeId": 101, //EmployeeId is hardcoded until login feature is implemented
+            "productId": parseInt(productId),
+            "quantity": parseInt(quantity),
+            "comments": comments,
+            "type": selectedSupplier ? "IN" : "ADJUST",
+            "date": new Date(),
+            "supplierId": selectedSupplier == null ? null : parseInt(selectedSupplier),
         }
         addStockRecord(newStock);
-
-        // clear the fields
-        setProductId("");
-        setProductName("");
-        setCategory([]);
-        setSupplier([]);
-        setQuantity("");
-        setDescription("");
-        setSelectedCategory("");
-        setSelectedSupplier("");
-
-        window.alert("Stock Updated");
+        clearFields();
     }
 
     return (
         <div className="row">
             <form className="col-4" onSubmit={handleAddToStocks}>
                 <input value={productId} onChange={handleProductIdChange} type="text" className="form-control form-control-lg mb-3" placeholder="Product ID"/>
-                <input value={productName} onChange={handleProductNameChange} type="text" className="form-control form-control-lg mb-3" placeholder="Product Name"/>
-                <select className="form-control form-control-lg custom-select custom-select-lg mb-3" onChange={handleCategoryChange}>
-                    <option value="">Select Category</option>
-                    {category.map(i=>(<option key={i} value={i}>{i}</option>))}
-                </select>
-                <select className="form-control form-control-lg custom-select custom-select-lg mb-3" onChange={handleSupplierChange}>
+                <input value={productName} type="text" readonly="readonly" className="form-control form-control-lg mb-3" placeholder="Product Name"/>
+                <input value={category} type="text" readonly="readonly" className="form-control form-control-lg mb-3" placeholder="Category Name"/>
+                <select value={selectedSupplier} className="form-control form-control-lg custom-select custom-select-lg mb-3" onChange={handleSupplierChange}>
                     <option value="">Select Supplier</option>
-                    {supplier.map(i=>(<option key={i} value={i}>{i}</option>))}
+                    {supplier.map(i=>(<option key={i.supplierId} value={i.supplierId}>{i.supplierName}</option>))}
                 </select>
                 <input value={quantity} onChange={handleQuantityChange} type="text" className="form-control form-control-lg mb-3" placeholder="Quantity"/>
                 <input type="submit" className="btn btn-lg btn-success w-100 mb-3" value="Add To Stocks" />
             </form> 
             <div className="col-8 ">
-                <textarea className={"w-100 h-100 description-box "+(description?"text-dark":"text-muted")} onChange={handleDescriptionChange} value={description} placeholder="Add Product ID to view product details" />
+                <textarea className={"w-100 h-75 description-box "+(description?"text-dark":"text-muted")} value={description} readonly="readonly" placeholder="Add Product ID to view product details" />
+                <textarea className={"w-100 h-25 "+(comments?"text-dark":"text-muted")} value={comments} onChange={handleCommentsChange} placeholder="Leave a comment for this transaction." />
             </div>
         </div>   
     ) 
