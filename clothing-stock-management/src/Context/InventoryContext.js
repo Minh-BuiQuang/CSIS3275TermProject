@@ -38,7 +38,10 @@ export const InventoryProvider = ({children}) => {
     const fetchTransactions = async () => {
         const response = await fetch('https://localhost:44348/api/Stock');
         const data = await response.json();
-        setTransactions(data.data);
+        if(data.data) {
+            setTransactions(data.data);
+        }
+        
     }
 
     const addStockRecord = async (newRecord) => {
@@ -78,7 +81,7 @@ export const InventoryProvider = ({children}) => {
     }
 
     return (
-        <InventoryContext.Provider value={{transactions, products, stockOutProduct, addStockRecord, fetchProductDetails}}>{children}</InventoryContext.Provider>
+        <InventoryContext.Provider value={{transactions, transactions, products, stockOutProduct, addStockRecord, fetchProductDetails}}>{children}</InventoryContext.Provider>
     )
 }
 

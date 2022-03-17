@@ -2,9 +2,9 @@ import {useContext} from 'react';
 import InventoryContext from '../Context/InventoryContext';
 
 function StockRecords() {
-    const {stockRecords} = useContext(InventoryContext);
-    console.log(stockRecords);
-    if(stockRecords.data == null)     
+    const {transactions} = useContext(InventoryContext);
+
+    if(transactions.data == null)     
         return ""
     else
         return (
@@ -23,7 +23,7 @@ function StockRecords() {
                     </tr>
                 </thead>
                 <tbody>
-                    {stockRecords.data.map(d=>(<tr key={d.transactionNumber}>
+                    {transactions.data.map(d=>(<tr key={d.transactionNumber}>
                         <td>{d.transactionNumber}</td>
                         <td>{d.productName}</td>
                         <td>{d.employeeName}</td>

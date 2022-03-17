@@ -12,15 +12,27 @@ import CurrentStock from "./components/CurrentStock";
 import Login from "./components/Login";
 import Customers from "./components/Customers";
 import Suppliers from "./components/Suppliers";
+import { useState } from "react";
 
 function App() {
+
+  const [authenticated, setAuthenticated] = useState(false);
+  // if(!authenticated) {
+  //   return (
+  //     <>
+  //       <Login setAuthenticated={setAuthenticated} />
+  //       <Footer />
+  //     </>
+  //   )
+  // }
+
   return (
     <InventoryProvider>
       <Router>
+        {/* {!authenticated ? <Login setAuthenticated={setAuthenticated} />: (<> */}
         <Header />
           <div className='container mt-2'>
             <Routes>
-              <Route exact path="/login" element={<Login />} />
               <Route exact path="/" element={<StockRecords />} />
               <Route exact path="/stock-in" element={<StockIn />} />
               <Route exact path="/stock-out" element={<StockOut />} />
@@ -29,6 +41,7 @@ function App() {
               <Route exact path="/current-stock" element={<CurrentStock />} />
             </Routes>
           </div>
+          {/* </>)} */}
         <Footer />
       </Router>
     </InventoryProvider>

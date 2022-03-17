@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-function Login() {
+function Login({setAuthenticated}) {
     const [employeeId, setEmployeeId] = useState("");
     const [pin, setPin] = useState("");
     const navigate = useNavigate();
@@ -21,7 +21,8 @@ function Login() {
             const data = await response.json();
             
             if(data.success === true) {
-                navigate('/');
+                setAuthenticated(true);
+                navigate('/customers');
             } else {
                 window.alert("Wrong Credentials");
             }
