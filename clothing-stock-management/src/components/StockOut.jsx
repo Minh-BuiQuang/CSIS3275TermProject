@@ -103,7 +103,7 @@ function StockOut() {
                     {customer.map(i=>(<option key={i.customerId} value={i.customerId}>{i.customerName}</option>))}
                 </select>
                 <input value={quantity} onChange={handleQuantityChange} type="text" className="form-control form-control-lg mb-3" placeholder="Quantity"/>
-                <input type="submit" className="btn btn-lg btn-success w-100 mb-3" value="Add To Stocks" />
+                <input type="submit" className="btn btn-lg btn-success w-100 mb-3" value="Stock Out" />
             </form> 
             <div className="col-8 ">
                 <p type="text">Current quantity: {currentQuantity}</p>
