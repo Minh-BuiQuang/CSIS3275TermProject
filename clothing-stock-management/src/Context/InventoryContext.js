@@ -41,16 +41,8 @@ export const InventoryProvider = ({children}) => {
         setTransactions(data.data);
     }
 
-
-
-
-
-
-
-
-
-    const addTransactionRecord = async (newRecord) => {
-        const response = await fetch('https://localhost:44348/api/Stock/stockDetail', {
+    const addStockRecord = async (newRecord) => {
+        const response = await fetch('https://localhost:44348/api/Stock/StockDetail', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +51,11 @@ export const InventoryProvider = ({children}) => {
         })
 
         const data = await response.json();
-        // setStockRecords([data, ...stockRecords]);
+        if(data.success)
+            window.alert("Stock Updated");
+        else
+            window.alert("Stock Update failed. Please check your connection!");
+            
     }
 
     const stockOutProduct = async (updatedRecord) => {
@@ -75,12 +71,14 @@ export const InventoryProvider = ({children}) => {
         // setStockRecords([data, ...stockRecords]);
     }
 
-    const fetchProductDetails = (productId) => {
-        return products.data.filter(product=>product.productId == productId)[0];
+    const fetchProductDetails =  async (productId) => {
+        const records = await fetch('https://localhost:44348/api/Product/'+ productId);
+        const data = await records.json();
+        return data;
     }
 
     return (
-        <InventoryContext.Provider value={{transactions, products, stockOutProduct, addTransactionRecord, fetchProductDetails}}>{children}</InventoryContext.Provider>
+        <InventoryContext.Provider value={{transactions, products, stockOutProduct, addStockRecord, fetchProductDetails}}>{children}</InventoryContext.Provider>
     )
 }
 
