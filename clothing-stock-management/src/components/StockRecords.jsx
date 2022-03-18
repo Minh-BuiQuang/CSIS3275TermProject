@@ -11,7 +11,7 @@ function StockRecords() {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th scope='col'>Transaction ID</th>
+                        <th scope='col'>ID</th>
                         <th scope='col'>Product</th>
                         <th scope='col'>Employee</th>
                         <th scope='col'>Type</th>

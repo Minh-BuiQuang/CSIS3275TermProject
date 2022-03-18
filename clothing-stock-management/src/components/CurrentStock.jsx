@@ -17,8 +17,8 @@ function CurrentStock() {
         <table className="table table-striped">
             <thead>
                 <tr>
+                    <th scope='col'>ID</th>
                     <th scope='col'>Product Name</th>
-                    <th scope='col'>Product ID</th>
                     <th scope='col'>Category</th>
                     <th scope='col'>Quantity</th>
                     <th scope='col'>Size</th>

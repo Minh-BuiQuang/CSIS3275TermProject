@@ -39,7 +39,7 @@ function Customers() {
                 <table className="table table-striped">
                     <thead>
                         <tr>
-                            <th scope='col'>Customer ID</th>
+                            <th scope='col'>ID</th>
                             <th scope='col'>Customer Name</th>
                             <th scope='col'>Location</th>
                             <th scope='col'>Email</th>

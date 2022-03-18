@@ -38,7 +38,7 @@ function Suppliers() {
                 <table className="table table-striped">
                     <thead>
                         <tr>
-                            <th scope='col'>Supplier ID</th>
+                            <th scope='col'>ID</th>
                             <th scope='col'>Supplier Name</th>
                             <th scope='col'>Email</th>
                             <th scope='col'>Phone</th>
