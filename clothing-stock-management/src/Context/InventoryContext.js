@@ -72,7 +72,7 @@ export const InventoryProvider = ({children}) => {
         });
 
         const data = await response.json();
-        // setStockRecords([data, ...stockRecords]);
+        setTransactions([data, ...transactions]);
     }
 
     const fetchProductDetails =  async (productId) => {
@@ -82,7 +82,7 @@ export const InventoryProvider = ({children}) => {
     }
 
     return (
-        <InventoryContext.Provider value={{transactions, transactions, products, stockOutProduct, addStockRecord, fetchProductDetails}}>{children}</InventoryContext.Provider>
+        <InventoryContext.Provider value={{transactions, suppliers, customers, products, stockOutProduct, addStockRecord, fetchProductDetails}}>{children}</InventoryContext.Provider>
     )
 }
 

@@ -2,8 +2,7 @@ import {useEffect, useState} from 'react';
 
 function Customers() {
     const [data, setData] = useState([]);
-    const [search, setSearch] = useState("");
-
+    
     useEffect(()=>{
         const fetchEntityData = async () => {
             const response = await fetch('https://localhost:44348/api/Customer');
@@ -12,12 +11,6 @@ function Customers() {
         };
         fetchEntityData();
     }, []);
-
-
-    const onSearchChange = (e) => {
-        setSearch(e.target.value);
-    }
-
     
     return (
         <>

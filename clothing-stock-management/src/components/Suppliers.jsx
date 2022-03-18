@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react';
 
 function Suppliers() {
     const [data, setData] = useState([]);
-    const [search, setSearch] = useState("");
 
     useEffect(()=>{
         const fetchEntityData = async () => {
@@ -12,12 +11,6 @@ function Suppliers() {
         };
         fetchEntityData();
     }, []);
-
-
-    const onSearchChange = (e) => {
-        setSearch(e.target.value);
-    }
-
     
     return (
         <>

@@ -35,7 +35,7 @@ function Login() {
     return (
         <div className='row'>
             <div className='col'>
-                <img className='w-50' src={login} alt='login image' />
+                <img className='w-50' src={login} alt='login' />
             </div>
             <form className='col' onSubmit={handleLogin}>
                 <h2 className='mb-3'>Login</h2>
