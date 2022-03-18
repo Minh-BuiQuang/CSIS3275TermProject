@@ -1,8 +1,17 @@
+import * as JsSearch from 'js-search';
 import {useEffect, useState} from 'react';
 
 function Customers() {
     const [data, setData] = useState([]);
-    
+    const [refreshData, setRefreshData] = useState(false);
+    const [search, setSearch] = useState("");
+    var jssearch = new JsSearch.Search('customerId');
+    jssearch.addIndex('customerName');
+    jssearch.addIndex('location');
+    jssearch.addIndex('email');
+    jssearch.addIndex('phone');
+    jssearch.addDocuments(data);
+
     useEffect(()=>{
         const fetchEntityData = async () => {
             const response = await fetch('https://localhost:44348/api/Customer');
@@ -10,12 +19,23 @@ function Customers() {
             setData(data.data);
         };
         fetchEntityData();
-    }, []);
+    }, [refreshData]);
+
+    const handleSearch = (e) => {
+        if(e.target.value === "") {
+            setRefreshData(!refreshData);
+        }
+        setSearch(e.target.value);
+        setData(jssearch.search(e.target.value));
+    }
     
     return (
         <>
             <div>
-                <h3>Customers</h3>
+                <div className='d-flex justify-content-between'>
+                    <h3>Customers</h3>
+                    <input type="text" className="form-control w-25" placeholder="Search" value={search} onChange={handleSearch}  />
+                </div>
                 <table className="table table-striped">
                     <thead>
                         <tr>

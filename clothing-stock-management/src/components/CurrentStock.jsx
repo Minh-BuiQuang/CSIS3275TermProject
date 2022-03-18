@@ -40,12 +40,3 @@ function CurrentStock() {
 }
 
 export default CurrentStock;
-
-/*
-category: "Others"
-description: "One of Prada's most functional designs, this belt bag is made from weather-resistant shell fabric with zip compartments for storing your daily belongings. It's designed for navigating your day hands-free- try styling yours diagonally across the body."
-productId: 1
-productName: "Prada Striped Shell Belt Bag"
-quantity: 16
-size: "XS"
-*/

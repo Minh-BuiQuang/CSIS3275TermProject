@@ -1,32 +1,14 @@
-import { useContext, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import InventoryContext from "../Context/InventoryContext";
 
 function Header() {
-
     const location = useLocation();
     const navigate = useNavigate();
-    const [data, setData] = useState([]);
-    const [search, setSearch] = useState();
-    const {suppliers, customers} = useContext(InventoryContext);
 
     const pathMatchRoute = (route) => {
         return route === location.pathname
     }
 
     const empName = localStorage.getItem('empName');
-
-    
-
-    const handleSearch = (e) => {
-        setSearch(e.target.value);
-        if(location.pathname === '/suppliers') {
-            setData(suppliers);
-        } else if (location.pathname === '/customers'){
-            setData(customers);
-        }
-
-    }
 
     return (
         <>
@@ -46,12 +28,7 @@ function Header() {
                     <h5 className="nav-item nav-link p-3"><NavLink to='/suppliers' className={`text-decoration-none ${pathMatchRoute('/entity-list') ? 'text-success' : 'text-dark'}`}>Suppliers</NavLink></h5>
                     <h5 className="nav-item nav-link p-3"><NavLink to='/customers' className={`text-decoration-none ${pathMatchRoute('/entity-list') ? 'text-success' : 'text-dark'}`}>Customers</NavLink></h5>
                 </div>
-                <form>
-                    <input onChange={handleSearch} className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                </form>
             </nav>
-
-        
         </>
     )
 }
