@@ -65,7 +65,7 @@ namespace StockInventoryWebApi.Services.Service
                     UserStockInOutProduct userStockInOutProduct = new UserStockInOutProduct
                     {
                         Comments = userStock.Comments,
-                        Date = userStock.Date,
+                        Date = userStock.Date.UtcDateTime,
                         EmployeeId = userStock.EmployeeId,
                         Quantity = userStock.Quantity,
                         ProductId = userStock.ProductId,
@@ -124,7 +124,7 @@ namespace StockInventoryWebApi.Services.Service
                               .Select(x => new
                               {
                                   Comments = x.Comments,
-                                  Date = x.Date,
+                                  Date = new DateTimeOffset(x.Date, TimeSpan.Zero),
                                   EmployeeName = x.Employee.Fname,
                                   Quantity = x.Quantity,
                                   ProductName = x.Product.ProductName,
@@ -177,7 +177,7 @@ namespace StockInventoryWebApi.Services.Service
                         if (userStock.Quantity != stock.Quantity)
                             stock.Quantity = userStock.Quantity;
                         if (userStock.Date != stock.Date)
-                            stock.Date = userStock.Date;
+                            stock.Date = userStock.Date.UtcDateTime;
                         if (userStock.TransactionNumber != stock.TransactionNumber)
                             stock.TransactionNumber = userStock.TransactionNumber;
                         if (userStock.Comments != stock.Comments)

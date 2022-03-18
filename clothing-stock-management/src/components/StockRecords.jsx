@@ -23,14 +23,14 @@ function StockRecords() {
                     </tr>
                 </thead>
                 <tbody>
-                    {transactions.map(d=>(<tr key={d.transactionNumber}>
+                    {transactions.sort((a,b) => b.transactionNumber - a.transactionNumber).map(d=>(<tr key={d.transactionNumber}>
                         <td>{d.transactionNumber}</td>
                         <td>{d.productName}</td>
                         <td>{d.employeeName}</td>
                         <td>{d.type}</td>
                         <td>{d.supplierName == null ? (d.customerName == null ? "-" : d.customerName) : d.supplierName}</td>
-                        <td>{new Date(d.date).toTimeString().substring(0,8)}</td>
-                        <td>{new Date(d.date).toDateString().substring(4)}</td>
+                        <td>{new Date(d.date).toLocaleTimeString()}</td>
+                        <td>{new Date(d.date).toLocaleDateString()}</td>
                         <td style={{textAlign: 'right', paddingRight:'40px'}}>{d.quantity}</td>
                         <td>{d.comments}</td>
                     </tr>))}
