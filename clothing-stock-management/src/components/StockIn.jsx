@@ -76,8 +76,9 @@ function StockIn() {
             window.alert("Please give required fields");
             return;
         }
+        const employeeId = localStorage.getItem('empId');
         const newStock = {
-            "employeeId": 101, //EmployeeId is hardcoded until login feature is implemented
+            "employeeId": parseInt(employeeId),
             "productId": parseInt(productId),
             "quantity": parseInt(quantity),
             "comments": comments,
