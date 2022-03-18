@@ -45,6 +45,7 @@ export const InventoryProvider = ({children}) => {
     }
 
     const addStockRecord = async (newRecord) => {
+        console.log(newRecord);
         const response = await fetch('https://localhost:44348/api/Stock/StockDetail', {
             method: 'POST',
             headers: {
