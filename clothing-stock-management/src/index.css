@@ -8,7 +8,7 @@
 .data-table tbody {
   display: block;
   height: 580px;
-  overflow: auto;
+  overflow-y: scroll;
 }
 .data-table thead, .data-table tbody tr {
   display: table;

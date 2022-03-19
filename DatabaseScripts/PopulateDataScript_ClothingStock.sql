@@ -1,4 +1,6 @@
-﻿declare @DataPath varchar(1000)
+﻿USE ClothingStock_DB;
+
+declare @DataPath varchar(1000)
 --Set the path to the data folder in your system. Ex: 'C:\Data'
 set @DataPath = 'C:\data\'
 --Insert product data
