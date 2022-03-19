@@ -10,6 +10,7 @@ namespace StockInventoryWebApi.Web.Models
     public partial class UserStockInOutProduct
     {
         public int TransactionNumber { get; set; }
+        public string TransactionId { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
         public DateTime Date { get; set; }

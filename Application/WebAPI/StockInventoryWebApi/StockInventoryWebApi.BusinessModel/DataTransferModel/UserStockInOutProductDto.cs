@@ -11,9 +11,16 @@ namespace StockInventoryWebApi.BusinessModel.DataTransferModel
         public int Quantity { get; set; }
         public DateTimeOffset Date { get; set; }
         public int TransactionNumber { get; set; }
+        public string TransactionId { get; set; }
         public string Comments { get; set; }
         public string Type { get; set; }
         public int? SupplierId { get; set; }
         public int? CustomerId { get; set; }
+    }
+
+    public class TransactionResponse
+    {
+        public bool IsSuccess { get; set; }
+        public string TransctionId { get; set; }
     }
 }

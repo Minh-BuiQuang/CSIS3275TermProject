@@ -170,7 +170,7 @@ namespace StockInventoryWebApi.Web.Models
             modelBuilder.Entity<UserStockInOutProduct>(entity =>
             {
                 entity.HasKey(e => e.TransactionNumber)
-                    .HasName("PK__User_Sto__E733A2BEA9E00665");
+                    .HasName("PK__User_Sto__E733A2BEEE64496F");
 
                 entity.ToTable("User_StockIN_OUT_Product");
 
@@ -187,6 +187,10 @@ namespace StockInventoryWebApi.Web.Models
                 entity.Property(e => e.ProductId).HasColumnName("ProductID");
 
                 entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
+
+                entity.Property(e => e.TransactionId)
+                    .IsRequired()
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Type)
                     .IsRequired()

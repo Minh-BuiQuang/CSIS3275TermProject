@@ -97,7 +97,7 @@ namespace StockInventoryWebApi.Web.Controllers
         [ProducesResponseType(typeof(ResponseMessage), 400)]
         [ProducesResponseType(typeof(ResponseMessage), 401)]
         [ProducesResponseType(typeof(ResponseMessage), 404)]
-        public ActionResult<UserStockInOutProductDto> AddStockDetails([FromBody] UserStockInOutProductDto stock)
+        public ActionResult<TransactionResponse> AddStockDetails([FromBody] UserStockInOutProductDto stock)
         {
             ActionResult response;
             ResponseMessage responseMessage;
@@ -108,14 +108,14 @@ namespace StockInventoryWebApi.Web.Controllers
             }
             else
             {
-                bool isSuccess = _stockService.AddStockRecord(stock);
-                if (!isSuccess)
+                var res = _stockService.AddStockRecord(stock);
+                if (!res.IsSuccess)
                 {
                     response = NotFound(new ResponseMessage(false, null, new Message(HttpStatusCode.NotFound, "No record is add in database.")));
                 }
                 else
                 {
-                    response = Ok(new ResponseMessage(true, isSuccess, new Message(HttpStatusCode.OK)));
+                    response = Ok(new ResponseMessage(true, res, new Message(HttpStatusCode.OK)));
                 }
             }
 

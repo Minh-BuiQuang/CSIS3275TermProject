@@ -104,9 +104,9 @@ function StockIn() {
                 <input type="submit" className="btn btn-lg btn-success w-100 mb-3" value="Add To Stocks" />
             </form> 
             <div className="col-8 ">
-                <p type="text">Current quantity: {currentQuantity}</p>
-                <textarea className={"w-100 h-75 description-box "+(description?"text-dark":"text-muted")} value={description} readOnly="readonly" placeholder="Add Product ID to view product details" />
-                <textarea className={"w-100 h-25 "+(comments?"text-dark":"text-muted")} value={comments} onChange={handleCommentsChange} placeholder="Leave a comment for this transaction." />
+                <p type="text"><span type="text">Category: {category}  </span>  Quantity: {currentQuantity}</p>
+                <textarea  className={"w-100 h-75 description-box "+(description?"text-dark":"text-muted")} value={description} readOnly="readonly"  placeholder="Add Product ID to view product details" />
+                <textarea maxLength={50} className={"w-100 h-25 "+(comments?"text-dark":"text-muted")} value={comments} onChange={handleCommentsChange} placeholder="Leave a comment for this transaction." />
             </div>
         </div>   
     ) 

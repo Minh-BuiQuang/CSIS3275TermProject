@@ -30,9 +30,10 @@ namespace StockInventoryWebApi.Services.Service
             _unitOfWork = unitOfWork;
         }
         #endregion
-        public bool AddStockRecord(UserStockInOutProductDto userStock)
+        public TransactionResponse AddStockRecord(UserStockInOutProductDto userStock)
         {
             bool isSuccess = false;
+            string transactionId = String.Empty;
             try
             {
                 if (userStock != null)
@@ -44,26 +45,28 @@ namespace StockInventoryWebApi.Services.Service
                         case "IN":
                             var supplier = _unitOfWork.Repository<Supplier>().GetById(userStock.SupplierId);
                             if (supplier == null || userStock.CustomerId != null || userStock.Quantity <= 0)
-                                return false;
+                                return new TransactionResponse { TransctionId = transactionId, IsSuccess = isSuccess } ;
                             break;
                         //Stock Out: SupplierId must be null. CustomerId must exists in database. Quantity < 0
                         case "OUT":
                             var customer = _unitOfWork.Repository<Customer>().GetById(userStock.CustomerId);
                             if (customer == null || userStock.SupplierId != null || userStock.Quantity >= 0)
-                                return false;
+                                return new TransactionResponse { TransctionId = transactionId, IsSuccess = isSuccess };
                             break;
                         //Adjustment: Both SupplierId and CustomerId must be null. Quantity != 0
                         case "ADJUST":
                             if (userStock.CustomerId != null || userStock.SupplierId != null || userStock.Quantity == 0)
-                                return false;
+                                return new TransactionResponse { TransctionId = transactionId, IsSuccess = isSuccess };
                             break;
                         //Refuse add stock if type is incorrect
                         default:
-                            return false;
+                            return new TransactionResponse { TransctionId = transactionId, IsSuccess = isSuccess };
                     }
 
+                    var transactionIdGen = Guid.NewGuid();
                     UserStockInOutProduct userStockInOutProduct = new UserStockInOutProduct
                     {
+                        TransactionId =transactionIdGen.ToString(),
                         Comments = userStock.Comments,
                         Date = userStock.Date.UtcDateTime,
                         EmployeeId = userStock.EmployeeId,
@@ -80,6 +83,7 @@ namespace StockInventoryWebApi.Services.Service
                     _unitOfWork.Repository<Product>().Update(product);
                     _unitOfWork.SaveChanges();
                     isSuccess = true;
+                    transactionId = transactionIdGen.ToString();
                 }
 
             }
@@ -89,7 +93,7 @@ namespace StockInventoryWebApi.Services.Service
                 isSuccess = false;
             }
 
-            return isSuccess;
+            return new TransactionResponse { TransctionId = transactionId, IsSuccess = isSuccess };
         }
 
         public bool DeleteStockRecord(int empId, int prodId, int transNum)
@@ -129,6 +133,7 @@ namespace StockInventoryWebApi.Services.Service
                                   Quantity = x.Quantity,
                                   ProductName = x.Product.ProductName,
                                   TransactionNumber = x.TransactionNumber,
+                                  TransactionId = x.TransactionId,
                                   Type = x.Type,
                                   SupplierName = x.Supplier.SupplierName,
                                   CustomerName = x.Customer.CustomerName,
@@ -152,6 +157,7 @@ namespace StockInventoryWebApi.Services.Service
                              Quantity = x.Quantity,
                              ProductId = x.ProductId,
                              TransactionNumber = x.TransactionNumber,
+                             TransactionId = x.TransactionId,
                              Type = x.Type,
                              CustomerId = x.CustomerId,
                              SupplierId =x.SupplierId

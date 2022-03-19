@@ -11,8 +11,8 @@ function StockRecords() {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th scope='col'>ID</th>
-                        <th scope='col'>Product</th>
+                        <th scope='col'>Transaction ID</th>
+                        <th scope='col'>Product ID</th>
                         <th scope='col'>Employee</th>
                         <th scope='col'>Type</th>
                         <th scope='col'>Entity</th>
@@ -24,7 +24,7 @@ function StockRecords() {
                 </thead>
                 <tbody>
                     {transactions.sort((a,b) => b.transactionNumber - a.transactionNumber).map(d=>(<tr key={d.transactionNumber}>
-                        <td>{d.transactionNumber}</td>
+                        <td>{d.transactionId}</td>
                         <td>{d.productName}</td>
                         <td>{d.employeeName}</td>
                         <td>{d.type}</td>

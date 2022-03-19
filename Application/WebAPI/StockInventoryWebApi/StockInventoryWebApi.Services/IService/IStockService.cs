@@ -9,7 +9,7 @@ namespace StockInventoryWebApi.Services.IService
     {
         List<dynamic> GetAllStocks();
         UserStockInOutProductDto GetStockById(int empId, int prodId, int transNum);
-        bool AddStockRecord(UserStockInOutProductDto userStock);
+        TransactionResponse AddStockRecord(UserStockInOutProductDto userStock);
         bool UpdateStockRecord(UserStockInOutProductDto userStock);
         bool DeleteStockRecord(int empId, int prodId, int transNum);
     }
