@@ -2,3 +2,16 @@
   border: none;
   outline: none;
 }
+.data-table {
+  min-width: 1000px;
+}
+.data-table tbody {
+  display: block;
+  height: 580px;
+  overflow: auto;
+}
+.data-table thead, .data-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}

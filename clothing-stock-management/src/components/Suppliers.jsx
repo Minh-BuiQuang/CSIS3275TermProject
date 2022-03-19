@@ -35,18 +35,18 @@ function Suppliers() {
                 <h3>Suppliers</h3>
                     <input type="text" className="form-control w-25" placeholder="Search" value={search} onChange={handleSearch}  />
                 </div>
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope='col'>ID</th>
+                <table className="table table-striped data-table">
+                    <thead className="data-table">
+                        <tr className="data-table">
+                            <th scope='col' width='10%'>ID</th>
                             <th scope='col'>Supplier Name</th>
                             <th scope='col'>Email</th>
                             <th scope='col'>Phone</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="data-table">
                         {data.map(d=>(<tr key={d.supplierId}>
-                                <td>{d.supplierId}</td>
+                                <td width='10%'>{d.supplierId}</td>
                                 <td>{d.supplierName}</td>
                                 <td>{d.email}</td>
                                 <td>{d.phone}</td>
