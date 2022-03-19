@@ -36,19 +36,19 @@ function Customers() {
                     <h3>Customers</h3>
                     <input type="text" className="form-control w-25" placeholder="Search" value={search} onChange={handleSearch}  />
                 </div>
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope='col'>ID</th>
+                <table className="table table-striped data-table">
+                    <thead className="data-table">
+                        <tr className="data-table">
+                            <th scope='col' width='10%'>ID</th>
                             <th scope='col'>Customer Name</th>
                             <th scope='col'>Location</th>
                             <th scope='col'>Email</th>
                             <th scope='col'>Phone</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="data-table">
                         {data.map(d=>(<tr key={d.customerId}>
-                                <td>{d.customerId}</td>
+                                <td width='10%'>{d.customerId}</td>
                                 <td>{d.customerName}</td>
                                 <td>{d.location}</td>
                                 <td>{d.email}</td>
