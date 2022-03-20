@@ -11,21 +11,24 @@ import Login from "./components/Login";
 import Customers from "./components/Customers";
 import Suppliers from "./components/Suppliers";
 import ProtectedRoute from "./components/ProtectedRoute";
-
+import { useEffect, useState } from "react";
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
 
-  const authenticated = localStorage.getItem('authenticated');
-
+  const log = () => {
+    localStorage.getItem('authenticated') ? 
+      setAuthenticated(true) : setAuthenticated(false);
+  }
+  
 
   return (
     <InventoryProvider>
       <Router>
-
-        <Header />
+        {authenticated ? <Header log={log} /> : <></>}
           <div className='container mt-2'>
             <Routes>
-              <Route exact path="/" element={<Login />} />
+              <Route exact path="/" element={<Login log={log} />} />
               <Route element={<ProtectedRoute authenticated={authenticated} />}>
                 <Route exact path="/stock-records" element={<StockRecords />} />
                 <Route exact path="/stock-in" element={<StockIn />} />
@@ -36,7 +39,6 @@ function App() {
               </Route>
             </Routes>
           </div>
-          {/* </>} */}
         <Footer />
       </Router>
     </InventoryProvider>

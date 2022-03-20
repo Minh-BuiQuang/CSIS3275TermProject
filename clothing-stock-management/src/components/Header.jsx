@@ -1,6 +1,6 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
-function Header() {
+function Header({log}) {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -10,12 +10,18 @@ function Header() {
 
     const empName = localStorage.getItem('empName');
 
+    const handleLogout = () => {
+        localStorage.clear();
+        log();
+        navigate('/');
+    }
+
     return (
         <>
             <nav className="navbar navbar-dark bg-dark">
                 <div className="container">
                     <span className="navbar-brand">CLOTHING STOCK MANAGEMENT</span>
-                    <span className="float-right text-light">{empName} {empName &&<span role="button" className="text-success border border-success rounded p-2" onClick={()=>{localStorage.clear(); navigate('/')}}>Log Out</span> }</span>
+                    <span className="float-right text-light">{empName} {empName &&<span role="button" className="text-success border border-success rounded p-2" onClick={handleLogout}>Log Out</span> }</span>
                 </div>
             </nav>
 

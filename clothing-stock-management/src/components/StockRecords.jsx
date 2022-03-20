@@ -1,8 +1,12 @@
 import {useEffect, useState} from 'react';
+import {transactions_jssearch} from '../utils/JsSearch';
 
 function StockRecords() {
 
     const [transactions, setTransactions] = useState([]);
+    const [refreshData, setRefreshData] = useState(false);
+    const [search, setSearch] = useState("");
+    transactions_jssearch.addDocuments(transactions);
 
     useEffect(()=>{
         const fetchTransactions = async () => {
@@ -11,8 +15,22 @@ function StockRecords() {
             setTransactions(data.data);
         }
         fetchTransactions();
-    }, [])
+    }, [refreshData])
+
+    const handleSearch = (e) => {
+        if(e.target.value === "") {
+            setRefreshData(!refreshData);
+        }
+        setSearch(e.target.value);
+        setTransactions(transactions_jssearch.search(e.target.value));
+    }
+
     return (
+        <div>
+        <div className='d-flex justify-content-between'>
+            <h3>Transactions</h3>
+            <input type="text" className="form-control w-25" placeholder="Search" value={search} onChange={handleSearch}  />
+        </div>
         <table className="table table-striped data-table">
                 <thead className="data-table">
                     <tr className="data-table">
@@ -41,6 +59,7 @@ function StockRecords() {
                     </tr>))}
                 </tbody>
             </table>
+        </div>
     )
 }
 

@@ -1,16 +1,11 @@
-import * as JsSearch from 'js-search';
 import {useEffect, useState} from 'react';
+import {customer_jssearch} from '../utils/JsSearch';
 
 function Customers() {
     const [data, setData] = useState([]);
     const [refreshData, setRefreshData] = useState(false);
     const [search, setSearch] = useState("");
-    var jssearch = new JsSearch.Search('customerId');
-    jssearch.addIndex('customerName');
-    jssearch.addIndex('location');
-    jssearch.addIndex('email');
-    jssearch.addIndex('phone');
-    jssearch.addDocuments(data);
+    customer_jssearch.addDocuments(data);
 
     useEffect(()=>{
         const fetchEntityData = async () => {
@@ -26,7 +21,7 @@ function Customers() {
             setRefreshData(!refreshData);
         }
         setSearch(e.target.value);
-        setData(jssearch.search(e.target.value));
+        setData(customer_jssearch.search(e.target.value));
     }
     
     return (

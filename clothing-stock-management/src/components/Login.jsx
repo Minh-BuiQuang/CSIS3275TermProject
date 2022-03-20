@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 
 import login from '../assets/images/login.jpg';
 
-function Login() {
+function Login({log}) {
     const [employeeId, setEmployeeId] = useState("");
     const [pin, setPin] = useState("");
     const navigate = useNavigate();
@@ -26,7 +26,8 @@ function Login() {
             localStorage.setItem('authenticated', true);
             localStorage.setItem('empName', data.data.firstName+" "+data.data.lastName);
             localStorage.setItem('empId', data.data.employeeId);
-            navigate('/stock-records');
+            log();
+            navigate('/customers');
         } else {
             window.alert("Wrong Credentials");
         }

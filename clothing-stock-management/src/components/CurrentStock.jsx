@@ -1,8 +1,12 @@
 import {useEffect, useState } from "react";
+import {currentStocks_jssearch} from '../utils/JsSearch';
 
 function CurrentStock() {
 
     const [currentStocks, setCurrentStocks] = useState([]);
+    const [refreshData, setRefreshData] = useState(false);
+    const [search, setSearch] = useState("");
+    currentStocks_jssearch.addDocuments(currentStocks);
 
     useEffect(()=>{
         const fetchCurrentStocks = async () => {
@@ -11,10 +15,24 @@ function CurrentStock() {
             setCurrentStocks(data.data);
         }
         fetchCurrentStocks();
-    }, [])
+    }, [refreshData])
+
+    // handle search
+    const handleSearch = (e) => {
+        if(e.target.value === "") {
+            setRefreshData(!refreshData);
+        }
+        setSearch(e.target.value);
+        setCurrentStocks(currentStocks_jssearch.search(e.target.value));
+    }
 
     return (
-        <table className="table table-striped data-table">
+        <div>
+            <div className='d-flex justify-content-between'>
+                <h3>Current Stocks</h3>
+                <input type="text" className="form-control w-25" placeholder="Search" value={search} onChange={handleSearch}  />
+            </div>
+            <table className="table table-striped data-table">
             <thead className="data-table">
                 <tr className="data-table">
                     <th scope='col' width='5%'>ID</th>
@@ -36,6 +54,8 @@ function CurrentStock() {
                 </tr>))}
             </tbody>
         </table>
+        </div>
+        
     )
 }
 
