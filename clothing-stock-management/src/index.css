@@ -1,8 +1,9 @@
-/* .description-box {
+ .description-box {
   border: none;
   outline: none;
-}
-.data-table {
+ }
+
+/*.data-table {
   min-width: 1000px;
 }
 .data-table tbody {
@@ -26,6 +27,13 @@
 .data-table th{color:#848484!important;}
 thead{border-top:2px solid #000!important }
 tbody td{padding: 0.8em 0.5em!important;}
-.scroll{height:450px!important;overflow:auto!important;}
+.scroll{height:390px!important;overflow:auto!important;}
 .display-f{display: flex!important;}
-.scroll-inner{height:350px!important;overflow:auto!important}
+.ellipsis{white-space: nowrap; text-overflow: ellipsis;overflow: hidden;max-width:40px;position: relative;}
+.ellipsis span{display:none;max-width:200px;z-index:1}
+.ellipsis:hover span{white-space: normal; overflow: visible;width:50px;display:inline-block;position: absolute;top:5px;left:5px;background:#fff;width:300px; box-shadow:1px 1px 10px #ccc;padding:2px;font-size:0.8em}
+.spanshow{color:gray;display: inline-block;}
+.spanhide{display:none; color:#000}
+.eleshow{display: block;}
+.elehide{display:none; }
+
