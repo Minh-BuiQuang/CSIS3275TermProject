@@ -29,28 +29,30 @@ function CurrentStock() {
     return (
         <div>
             <div className='d-flex justify-content-between'>
-                <h3>Current Stocks</h3>
+            <div className="container d-flex mt-2 mb-2">
+            <h4 className="flex-grow-1" >Current Stocks</h4>
                 <input type="text" className="form-control w-25" placeholder="Search" value={search} onChange={handleSearch}  />
+                </div>
             </div>
-            <table className="table table-striped data-table">
-            <thead className="data-table">
-                <tr className="data-table">
-                    <th scope='col' width='5%'>ID</th>
-                    <th scope='col' width='19%'>Product Name</th>
-                    <th scope='col' width='11%'>Category</th>
-                    <th scope='col' width='7%'>Quantity</th>
-                    <th scope='col' width='7%'>Size</th>
-                    <th scope='col'>Description</th>
+            <table className="table table-striped data-table container table-responsive d-flex flex-column mt-3">
+                <thead className="data-table">
+                    <tr className="row m-0">
+                    <th scope='col' className='col-2'>Product ID</th>
+                    <th scope='col' className='col-3'>Product Name</th>
+                    <th scope='col' className='col-1 px-0'>Category</th>
+                    <th scope='col' className='col-1 px-0'>Quantity</th>
+                    <th scope='col' className='col-1 px-0'>Size</th>
+                    <th scope='col' className='col-4 px-0'>Description</th>
                 </tr>
             </thead>
-            <tbody className="data-table">
-                {currentStocks.map(d=>(<tr key={d.productId}>
-                    <td width='5%'>{d.productId}</td>
-                    <td width='20%'>{d.productName}</td>
-                    <td width='11%'>{d.category}</td>
-                    <td width='7%'>{d.quantity}</td>
-                    <td width='7%'>{d.size}</td>
-                    <td>{d.description}</td>
+            <tbody className=" scroll w-auto">
+                {currentStocks.map(d=>(<tr key={d.productId} className="row m-0">
+                    <td className ='col-2'>{d.productId}</td>
+                    <td className ='col-3'>{d.productName}</td>
+                    <td className ='col-1'>{d.category}</td>
+                    <td className ='col-1'>{d.quantity}</td>
+                    <td className ='col-1'>{d.size}</td>
+                    <td className ='col-4'>{d.description}</td>
                 </tr>))}
             </tbody>
         </table>
