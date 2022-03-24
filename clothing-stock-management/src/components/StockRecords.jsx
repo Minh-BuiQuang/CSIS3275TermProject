@@ -37,27 +37,27 @@ function StockRecords() {
                 <thead className="data-table">
                     <tr className="data-table">
                         <th scope='col' className='col-2' >Transaction ID</th>
-                        <th scope='col' className='col-2' >Product</th>
-                        <th scope='col' className='col-1' >Employee</th>
-                        <th scope='col' className='col-1' >Type</th>
-                        <th scope='col' className='col-2' >Entity</th>
-                        <th scope='col' className='col-1' >Time</th>
-                        <th scope='col' className='col-1' >Date</th>
-                        <th scope='col' className='col-1' >Quantity</th>
-                        <th scope='col' className='col-1' >Comments</th>
+                        <th scope='col' className='col-2 px-2' >Product</th>
+                        <th scope='col' className='col-1 px-3' >Employee</th>
+                        <th scope='col' className='col-1 px-2' >Type</th>
+                        <th scope='col' className='col-2 px-3' >Entity</th>
+                        <th scope='col' className='col-1 px-3' >Time</th>
+                        <th scope='col' className='col-1 px-3' >Date</th>
+                        <th scope='col' className='col-1 px-3' >Quantity</th>
+                        <th scope='col' className='col-1 px-1' >Comments</th>
                     </tr>
                 </thead>
                 <tbody className="scroll w-auto">
                     {transactions.sort((a,b) => b.transactionNumber - a.transactionNumber).map(d=>(<tr key={d.transactionNumber}>
                         <td className ='col-2 ellipsis'>{d.transactionId}<span>{d.transactionId}</span></td>
-                        <td className ='col-2' >{d.productName}</td>
-                        <td className ='col-1'>{d.employeeName}</td>
-                        <td className ='col-1'>{d.type}</td>
+                        <td className ='col-2 px-1' >{d.productName}</td>
+                        <td className ='col-1 px-3'>{d.employeeName}</td>
+                        <td className ='col-1 px-1'>{d.type}</td>
                         <td className ='col-2' >{d.supplierName == null ? (d.customerName == null ? "-" : d.customerName) : d.supplierName}</td>
-                        <td className ='col-1' >{new Date(d.date).toLocaleTimeString()}</td>
-                        <td className ='col-1' >{new Date(d.date).toLocaleDateString()}</td>
-                        <td className ='col-1 text-start'>{d.quantity}</td>
-                        <td className ='col-1'>{d.comments}</td>
+                        <td className ='col-1 px-1' >{new Date(d.date).toLocaleTimeString()}</td>
+                        <td className ='col-1 px-1' >{new Date(d.date).toLocaleDateString()}</td>
+                        <td className ='col-1 px-1'>{d.quantity}</td>
+                        <td className ='col-1 px-0'>{d.comments}</td>
                     </tr>))}
                 </tbody>
             </table>
