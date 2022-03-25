@@ -55,7 +55,7 @@ export const InventoryProvider = ({children}) => {
         })
 
         const data = await response.json();
-        console.log(data)
+        return data;
     }
 
     const stockOutProduct = async (updatedRecord) => {
@@ -68,7 +68,7 @@ export const InventoryProvider = ({children}) => {
         });
 
         const data = await response.json();
-        setTransactions([data, ...transactions]);
+        return data;
     }
 
     const fetchProductDetails =  async (productId) => {
