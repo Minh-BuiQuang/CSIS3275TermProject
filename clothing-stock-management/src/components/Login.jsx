@@ -27,7 +27,7 @@ function Login({log}) {
             localStorage.setItem('empName', data.data.firstName+" "+data.data.lastName);
             localStorage.setItem('empId', data.data.employeeId);
             log();
-            navigate('/customers');
+            navigate('/stock-records');
         } else {
             window.alert("Wrong Credentials");
         }

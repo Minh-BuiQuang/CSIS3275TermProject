@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import {InventoryProvider} from "./Context/InventoryContext";
 import Header from "./components/Header";
@@ -11,16 +12,22 @@ import Login from "./components/Login";
 import Customers from "./components/Customers";
 import Suppliers from "./components/Suppliers";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { useEffect, useState } from "react";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
+
+  useEffect(()=>{
+    if(localStorage.getItem('authenticated')) {
+      setAuthenticated(true);
+    }
+  }, []);
 
   const log = () => {
     localStorage.getItem('authenticated') ? 
       setAuthenticated(true) : setAuthenticated(false);
   }
   
+  console.log(authenticated);
 
   return (
     <InventoryProvider>
