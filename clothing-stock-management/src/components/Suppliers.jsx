@@ -44,10 +44,10 @@ function Suppliers() {
                     </thead>
                     <tbody className="scroll w-auto">
                         {data.map(d=>(<tr key={d.supplierId} className="row m-0">
-                                <td scope='col' className='col-2'>{d.supplierId}</td>
-                                <td scope='col' className='col-4'>{d.supplierName}</td>
-                                <td scope='col' className='col-4'>{d.email}</td>
-                                <td scope='col' className='col-2'>{d.phone}</td>
+                                <td className='col-2'>{d.supplierId}</td>
+                                <td className='col-4'>{d.supplierName}</td>
+                                <td className='col-4'>{d.email}</td>
+                                <td className='col-2'>{d.phone}</td>
                         </tr>))}
                     </tbody>
                 </table>

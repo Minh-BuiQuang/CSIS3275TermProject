@@ -112,7 +112,7 @@ function StockOut() {
                 <input type="submit" className="btn btn-lg btn-success w-100 mb-3 mt-3" value="Stock Out" />
             </form> 
             <div className="col-7 m-3">
-                <p className={(showTransElement == true?"eleshow":"elehide")}> <img  src={check} alt='login' height='20px' className="mr-1" /> Record updated transaction id <span className="fw-bold">fdsagfa123</span></p> 
+                <p className={(showTransElement === true?"eleshow":"elehide")}> <img  src={check} alt='login' height='20px' className="mr-1" /> Record updated transaction id <span className="fw-bold">fdsagfa123</span></p> 
                 <p className={(category?"spanshow":"spanhide")} type="text"><span className="text-dark pb-3 fw-bold fs-5 d-block">{productName} 
                 </span><span>Category:  <span className="badge bg-dark rounded-pill"> {category} </span> 
                  </span>  Quantity: <span className="badge bg-dark rounded-pill"> {currentQuantity} </span></p>

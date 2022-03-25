@@ -45,11 +45,11 @@ function Customers() {
                     </thead>
                     <tbody className=" scroll w-auto">
                         {data.map(d=>(<tr key={d.customerId} className="row m-0">
-                                <td scope='col' className='col-2'>{d.customerId}</td>
-                                <td scope='col' className='col-3'>{d.customerName}</td>
-                                <td scope='col' className='col-2'>{d.location}</td>
-                                <td scope='col' className='col-3'>{d.email}</td>
-                                <td scope='col' className='col-2'>{d.phone}</td>
+                                <td className='col-2'>{d.customerId}</td>
+                                <td className='col-3'>{d.customerName}</td>
+                                <td className='col-2'>{d.location}</td>
+                                <td className='col-3'>{d.email}</td>
+                                <td className='col-2'>{d.phone}</td>
                        </tr>))}
                     </tbody>
                 </table>
