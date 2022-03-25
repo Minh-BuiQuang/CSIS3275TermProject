@@ -1,5 +1,7 @@
 import {useContext, useEffect, useState} from 'react';
 import InventoryContext from '../Context/InventoryContext';
+import check from '../assets/images/check.png';
+
 
 function StockIn() {
 
@@ -14,6 +16,7 @@ function StockIn() {
     const [description, setDescription] = useState("");
     const [comments, setComments] = useState("");
     const [currentQuantity, setCurrentQuantity] = useState("");
+    const [showTransElement, setshowTransElement] = useState(false);
 
     const clearFields = () => {
         
@@ -29,6 +32,7 @@ function StockIn() {
     }
     useEffect(()=>{
         const fetchSuppliers = async () => {
+            clearFields();
             const response = await fetch('https://localhost:44348/api/Supplier');
             const data = await response.json();
             setSupplier(data.data);
@@ -87,12 +91,13 @@ function StockIn() {
             "supplierId": selectedSupplier == null ? null : parseInt(selectedSupplier),
         }
         addStockRecord(newStock);
-        clearFields();
+        setshowTransElement(true);
+        // clearFields();
     }
 
     return (
-        <div className="row">
-            <form className="col-4" onSubmit={handleAddToStocks}>
+        <div className="container d-flex">
+            <form className="col-3 m-3" onSubmit={handleAddToStocks}>
                 <input value={productId} onChange={handleProductIdChange} type="text" className="form-control form-control-lg mb-3" placeholder="Product ID"/>
                 <input value={productName} type="text" readOnly="readonly" className="form-control form-control-lg mb-3" placeholder="Product Name"/>
                 <input value={category} type="text" readOnly="readonly" className="form-control form-control-lg mb-3" placeholder="Category Name"/>
@@ -101,12 +106,17 @@ function StockIn() {
                     {supplier.map(i=>(<option key={i.supplierId} value={i.supplierId}>{i.supplierName}</option>))}
                 </select>
                 <input value={quantity} onChange={handleQuantityChange} type="text" className="form-control form-control-lg mb-3" placeholder="Quantity"/>
-                <input type="submit" className="btn btn-lg btn-success w-100 mb-3" value="Add To Stocks" />
+                <input maxLength={50} className={" form-control border-gray form-control-lg mb-3"+(comments?"text-dark":"text-muted")} value={comments} onChange={handleCommentsChange} placeholder="Comment..." />
+                <input type="submit" className="btn btn-lg btn-success w-100 mb-3 mt-3" value="Add To Stocks" />
+                
             </form> 
-            <div className="col-8 ">
-                <p type="text"><span type="text">Category: {category}  </span>  Quantity: {currentQuantity}</p>
-                <textarea  className={"w-100 h-75 description-box "+(description?"text-dark":"text-muted")} value={description} readOnly="readonly"  placeholder="Add Product ID to view product details" />
-                <textarea maxLength={50} className={"w-100 h-25 "+(comments?"text-dark":"text-muted")} value={comments} onChange={handleCommentsChange} placeholder="Leave a comment for this transaction." />
+            <div className="col-7 m-3">
+                <p className={(showTransElement == true?"eleshow":"elehide")}> <img  src={check} alt='login' height='20px' className="mr-1" /> Record updated transaction id <span className="fw-bold">fdsagfa123</span></p>
+                <p className={(category?"spanshow":"spanhide")} type="text">
+                     <span className="text-dark pb-3 fw-bold fs-5 d-block">{productName} </span>
+                     <span>Category:  <span className="badge bg-dark rounded-pill"> {category} </span></span>  Quantity: <span className="badge bg-dark rounded-pill"> {currentQuantity} </span>
+                </p>
+                <p  className={"w-100 h-75 description-box"+(description?"text-dark":"text-muted")} readOnly="readonly"> <span  className={(description?"spanhide":"spanshow")} >Add Product ID to view product details</span>{description} </p>
             </div>
         </div>   
     ) 

@@ -27,35 +27,37 @@ function StockRecords() {
 
     return (
         <div>
-        <div className='d-flex justify-content-between'>
-            <h3>Transactions</h3>
+         <div className='d-flex justify-content-between'>
+            <div className="container d-flex mt-2 mb-2">
+            <h4 className="flex-grow-1" >Transactions</h4>
             <input type="text" className="form-control w-25" placeholder="Search" value={search} onChange={handleSearch}  />
+            </div>
         </div>
-        <table className="table table-striped data-table">
+        <table className="table table-striped data-table container table-responsive d-flex flex-column mt-3">
                 <thead className="data-table">
                     <tr className="data-table">
-                        <th scope='col' width='5%'>ID</th>
-                        <th scope='col' width='19%'>Product</th>
-                        <th scope='col' width='10%'>Employee</th>
-                        <th scope='col' width='5%'>Type</th>
-                        <th scope='col' width='14%'>Entity</th>
-                        <th scope='col' width='10%'>Time</th>
-                        <th scope='col' width='11%'>Date</th>
-                        <th scope='col' width='7%'>Quantity</th>
-                        <th scope='col'>Comments</th>
+                        <th scope='col' className='col-2' >Transaction ID</th>
+                        <th scope='col' className='col-2 px-2' >Product</th>
+                        <th scope='col' className='col-1 px-3' >Employee</th>
+                        <th scope='col' className='col-1 px-2' >Type</th>
+                        <th scope='col' className='col-2 px-3' >Entity</th>
+                        <th scope='col' className='col-1 px-3' >Time</th>
+                        <th scope='col' className='col-1 px-3' >Date</th>
+                        <th scope='col' className='col-1 px-3' >Quantity</th>
+                        <th scope='col' className='col-1 px-1' >Comments</th>
                     </tr>
                 </thead>
-                <tbody className="data-table">
+                <tbody className="scroll w-auto">
                     {transactions.sort((a,b) => b.transactionNumber - a.transactionNumber).map(d=>(<tr key={d.transactionNumber}>
-                        <td width='5%'>{d.transactionNumber}</td>
-                        <td width='20%'>{d.productName}</td>
-                        <td width='9%'>{d.employeeName}</td>
-                        <td width='5%'>{d.type}</td>
-                        <td width='15%'>{d.supplierName == null ? (d.customerName == null ? "-" : d.customerName) : d.supplierName}</td>
-                        <td width='10%'>{new Date(d.date).toLocaleTimeString()}</td>
-                        <td width='12%'>{new Date(d.date).toLocaleDateString()}</td>
-                        <td width='7%' style={{textAlign: 'right', paddingRight:'40px'}}>{d.quantity}</td>
-                        <td>{d.comments}</td>
+                        <td className ='col-2 ellipsis'>{d.transactionId}<span>{d.transactionId}</span></td>
+                        <td className ='col-2 px-1' >{d.productName}</td>
+                        <td className ='col-1 px-3'>{d.employeeName}</td>
+                        <td className ='col-1 px-1'>{d.type}</td>
+                        <td className ='col-2' >{d.supplierName == null ? (d.customerName == null ? "-" : d.customerName) : d.supplierName}</td>
+                        <td className ='col-1 px-1' >{new Date(d.date).toLocaleTimeString()}</td>
+                        <td className ='col-1 px-1' >{new Date(d.date).toLocaleDateString()}</td>
+                        <td className ='col-1 px-1'>{d.quantity}</td>
+                        <td className ='col-1 px-0'>{d.comments}</td>
                     </tr>))}
                 </tbody>
             </table>

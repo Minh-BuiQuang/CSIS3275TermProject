@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-import login from '../assets/images/login.jpg';
+import login from '../assets/images/banner.png';
 
 function Login({log}) {
     const [employeeId, setEmployeeId] = useState("");
@@ -35,17 +35,18 @@ function Login({log}) {
     
 
     return (
-        <div className='row'>
+        <div className=' d-flex align-items-top'>
             <div className='col'>
-                <img className='w-50' src={login} alt='login' />
+                <img  src={login} alt='login' height='700' />
             </div>
-            <form className='col' onSubmit={handleLogin}>
-                <h2 className='mb-3'>Login</h2>
-                <div className="form-group">
-                    <input type="text" className="form-control mb-2"  placeholder="Employee Id" value={employeeId} onChange={handleEmpIdChange} /><br />
-                    <input type="password" className="form-control mb-2" placeholder="Enter Pin" value={pin} onChange={handlePinChange} /><br />
+            <form className='col flex-fill m-5 p-5' onSubmit={handleLogin}>
+            <h5 className='mb-3 fw-bold'>CLOTHING STOCK MANAGEMENT</h5>
+                <h1 className='mb-4'>Login</h1>
+                <div className="form-group w-80">
+                    <input type="text" className="form-control mb-2 height-50 bg-gray"  placeholder="Employee Id" value={employeeId} onChange={handleEmpIdChange} /><br />
+                    <input type="password" className="form-control mb-2 height-50 bg-gray" placeholder="Enter Pin" value={pin} onChange={handlePinChange} /><br />
                 </div>
-                <button type="submit" className="btn btn-success w-100">Login</button>
+                <button type="submit" className="btn btn-success bg-green w-80 height-50">Login</button>
             </form>
         </div>
     )

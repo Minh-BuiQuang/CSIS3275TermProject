@@ -33,7 +33,7 @@ function App() {
     <InventoryProvider>
       <Router>
         {authenticated ? <Header log={log} /> : <></>}
-          <div className='container mt-2'>
+          <div className=''>
             <Routes>
               <Route exact path="/" element={<Login log={log} />} />
               <Route element={<ProtectedRoute authenticated={authenticated} />}>

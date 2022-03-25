@@ -55,10 +55,7 @@ export const InventoryProvider = ({children}) => {
         })
 
         const data = await response.json();
-        if(data.success)
-            window.alert("Stock Updated");
-        else
-            window.alert("Stock Update failed. Please check your connection!");
+        console.log(data)
     }
 
     const stockOutProduct = async (updatedRecord) => {
