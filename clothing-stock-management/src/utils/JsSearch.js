@@ -26,16 +26,17 @@ currentStocks_jssearch.addIndex('category');
 currentStocks_jssearch.addIndex('quantity');
 
 // transactions search
-export const transactions_jssearch = new JsSearch.Search('employeeId');
-transactions_jssearch.addIndex('employeeId');
-transactions_jssearch.addIndex('productId');
+export const transactions_jssearch = new JsSearch.Search('transactionNumber');
+transactions_jssearch.addIndex('productName');
 transactions_jssearch.addIndex('quantity');
 transactions_jssearch.addIndex('date');
 transactions_jssearch.addIndex('transactionNumber');
+transactions_jssearch.addIndex('transactionId');
 transactions_jssearch.addIndex('comments');
 transactions_jssearch.addIndex('type');
-transactions_jssearch.addIndex('supplierId');
-transactions_jssearch.addIndex('customerId');
+transactions_jssearch.addIndex('supplierName');
+transactions_jssearch.addIndex('customerName');
+transactions_jssearch.addIndex('employeeName');
 
 
 
