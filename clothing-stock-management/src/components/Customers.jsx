@@ -9,7 +9,7 @@ function Customers() {
 
     useEffect(()=>{
         const fetchEntityData = async () => {
-            const response = await fetch('https://localhost:44348/api/Customer');
+            const response = await fetch('https://sockinventory.azurewebsites.net/api/Customer');
             const data = await response.json();
             setData(data.data);
         };

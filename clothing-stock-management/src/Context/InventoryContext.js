@@ -17,26 +17,26 @@ export const InventoryProvider = ({children}) => {
 
     // Get current products
     const fetchProducts = async () => {
-        const response = await fetch('https://localhost:44348/api/Product');
+        const response = await fetch('https://sockinventory.azurewebsites.net/api/Product');
         const data = await response.json();
         setProducts(data);
     }
 
     // get customers
     const fetchCustomers = async () => {
-        const response = await fetch('https://localhost:44348/api/Customer');
+        const response = await fetch('https://sockinventory.azurewebsites.net/api/Customer');
         const data = await response.json();
         setCustomers(data.data);
     };
 
     const fetchSuppliers = async () => {
-        const response = await fetch('https://localhost:44348/api/Supplier');
+        const response = await fetch('https://sockinventory.azurewebsites.net/api/Supplier');
         const data = await response.json();
         setSuppliers(data.data);
     };
 
     const fetchTransactions = async () => {
-        const response = await fetch('https://localhost:44348/api/Stock');
+        const response = await fetch('https://sockinventory.azurewebsites.net/api/Stock');
         const data = await response.json();
         if(data.data) {
             setTransactions(data.data);
@@ -46,7 +46,7 @@ export const InventoryProvider = ({children}) => {
 
     const addStockRecord = async (newRecord) => {
         console.log(newRecord);
-        const response = await fetch('https://localhost:44348/api/Stock/StockDetail', {
+        const response = await fetch('https://sockinventory.azurewebsites.net/api/Stock/StockDetail', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export const InventoryProvider = ({children}) => {
     }
 
     const fetchProductDetails =  async (productId) => {
-        const records = await fetch('https://localhost:44348/api/Product/'+ productId);
+        const records = await fetch('https://sockinventory.azurewebsites.net/api/Product/'+ productId);
         const data = await records.json();
         return data;
     }

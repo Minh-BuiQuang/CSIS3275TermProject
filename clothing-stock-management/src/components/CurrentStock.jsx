@@ -10,7 +10,7 @@ function CurrentStock() {
 
     useEffect(()=>{
         const fetchCurrentStocks = async () => {
-            const response = await fetch('https://localhost:44348/api/Product');
+            const response = await fetch('https://sockinventory.azurewebsites.net/api/Product');
             const data = await response.json();
             setCurrentStocks(data.data);
         }

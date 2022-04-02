@@ -18,7 +18,7 @@ function Login({log}) {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const response = await fetch('https://localhost:44348/api/Login/Authenticate?employeeId='+employeeId+"&pin="+pin);
+        const response = await fetch('https://sockinventory.azurewebsites.net/api/Login/Authenticate?employeeId='+employeeId+"&pin="+pin);
         const data = await response.json();
 
         if(data.success === true) {

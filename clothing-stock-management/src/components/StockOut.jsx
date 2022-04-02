@@ -34,7 +34,7 @@ function StockOut() {
     useEffect(()=>{
         const fetchCustomers = async () => {
             clearFields();
-            const response = await fetch('https://localhost:44348/api/Customer');
+            const response = await fetch('https://sockinventory.azurewebsites.net/api/Customer');
             const data = await response.json();
             setCustomer(data.data);
         };

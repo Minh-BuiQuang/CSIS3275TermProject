@@ -10,7 +10,7 @@ function StockRecords() {
 
     useEffect(()=>{
         const fetchTransactions = async () => {
-            const response = await fetch('https://localhost:44348/api/Stock');
+            const response = await fetch('https://sockinventory.azurewebsites.net/api/Stock');
             const data = await response.json();
             setTransactions(data.data);
         }

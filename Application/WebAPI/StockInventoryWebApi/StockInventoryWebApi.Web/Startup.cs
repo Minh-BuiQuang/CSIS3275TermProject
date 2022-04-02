@@ -54,8 +54,7 @@ namespace StockInventoryWebApi.Web
             // get the connection string from appsettings.json
             var connectionString = Configuration.GetConnectionString("StockInv_DB");
             services.AddDbContext<ClothingStock_DBContext>(options =>
-            options.UseSqlServer(
-            connectionString, b => b.MigrationsAssembly("ClothingStock")));
+            options.UseSqlServer(connectionString));
 
             services.AddScoped<GenericUnitOfWork<ClothingStock_DBContext>>();
             services.AddScoped<ILoginService, LoginService>();

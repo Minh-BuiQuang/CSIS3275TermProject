@@ -35,7 +35,7 @@ function StockIn() {
     useEffect(()=>{
         const fetchSuppliers = async () => {
             clearFields();
-            const response = await fetch('https://localhost:44348/api/Supplier');
+            const response = await fetch('https://sockinventory.azurewebsites.net/api/Supplier');
             const data = await response.json();
             setSupplier(data.data);
         };
