@@ -29,6 +29,7 @@ function StockOut() {
         setSelectedCustomer("");
         setComments("");
         setCurrentQuantity("");
+        setshowTransElement(false);
     }
 
     useEffect(()=>{
@@ -128,7 +129,7 @@ function StockOut() {
                 </select>
                 <input value={quantity} onChange={handleQuantityChange} type="text" className="form-control form-control-lg mb-3" placeholder="Quantity"/>
                 <input maxLength={50} className={" form-control border-gray form-control-lg mb-3"+(comments?"text-dark":"text-muted")} value={comments} onChange={handleCommentsChange} placeholder="Comment..." />
-                <input type="submit" className="btn btn-lg btn-success w-100 mb-3 mt-3" value="Stock Out" />
+                <input type="submit" className="btn btn-success bg-green w-100 mb-3 mt-3" value="Stock Out" />
             </form> 
             <div className="col-7 m-3">
                 <p className={(showTransElement === true?"eleshow":"elehide")}> <img  src={check} alt='login' height='20px' className="mr-1" /> Record updated transaction id <span className="fw-bold">{transactionId}</span></p> 
