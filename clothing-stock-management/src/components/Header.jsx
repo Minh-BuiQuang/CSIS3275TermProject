@@ -31,8 +31,8 @@ function Header({log}) {
                     <h6 className="nav-item nav-link p-3"><NavLink to='/stock-in' className={`text-decoration-none ${pathMatchRoute('/stock-in') ? 'text-success' : 'text-dark'}`}>Stock In</NavLink></h6>
                     <h6 className="nav-item nav-link p-3"><NavLink to='/stock-out' className={`text-decoration-none ${pathMatchRoute('/stock-out') ? 'text-success' : 'text-dark'}`}>Stock Out</NavLink></h6>
                     <h6 className="nav-item nav-link p-3"><NavLink to='/current-stock' className={`text-decoration-none ${pathMatchRoute('/current-stock') ? 'text-success' : 'text-dark'}`}>Current Stock</NavLink></h6>
-                    <h6 className="nav-item nav-link p-3"><NavLink to='/suppliers' className={`text-decoration-none ${pathMatchRoute('/entity-list') ? 'text-success' : 'text-dark'}`}>Suppliers</NavLink></h6>
-                    <h6 className="nav-item nav-link p-3"><NavLink to='/customers' className={`text-decoration-none ${pathMatchRoute('/entity-list') ? 'text-success' : 'text-dark'}`}>Customers</NavLink></h6>
+                    <h6 className="nav-item nav-link p-3"><NavLink to='/suppliers' className={`text-decoration-none ${pathMatchRoute('/suppliers') ? 'text-success' : 'text-dark'}`}>Suppliers</NavLink></h6>
+                    <h6 className="nav-item nav-link p-3"><NavLink to='/customers' className={`text-decoration-none ${pathMatchRoute('/customers') ? 'text-success' : 'text-dark'}`}>Customers</NavLink></h6>
                 </div>
             </nav>
         </>
